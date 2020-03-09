@@ -484,21 +484,12 @@
 
                   <div class="form-group col-md-6">
                     <label>Dayoff:</label>
-                    <div class="input-group mb-3" style="width: 100%;">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <span class="fas fa-calendar-day"></span>
-                        </div>
+                    <div class="input-group date" >
+                      <div onclick = "chooseDayoff()" class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                       </div>
-                        <select id ="dayoff" class="form-control select2bs4"  placeholder="Select Destination" required>
-                          <option>Monday</option>
-                          <option>Tuesday</option>
-                          <option>Wednesday</option>
-                          <option>Thursday</option>
-                          <option>Friday</option>
-                          <option>Saturday</option>
-                          <option>Sunday</option>
-                        </select>
+                      <select id ='dayoff' class="form-control select2" multiple="multiple" data-placeholder="Select a dayoff" >
+                      <select>
                     </div>
 
                   </div>
@@ -561,6 +552,7 @@
   </section>
   <!-- /.content -->
   <!-- /.content-wrapper -->
+  </div>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.2
@@ -574,9 +566,9 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
+<!-- ./wrapper -->
+</div>
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
