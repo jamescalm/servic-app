@@ -21,7 +21,7 @@ signupForm.addEventListener('submit', (e) =>{
      console.log(cred)
      //adduser to database
      var user = firebase.auth().currentUser.uid;
-     db.collection('users').add({
+     db.collection('users').doc(user).set({
        id: user,
        name: fname,
        department: dept,
@@ -30,7 +30,7 @@ signupForm.addEventListener('submit', (e) =>{
        password: pass,
        userTag: userTag,
        licenseNo: licenseNo,
-       driverType: driverType,
+       driverType: driverType
      }).then(function(){
        alert('User successfully added');
        window.location.replace('home.html');
@@ -64,7 +64,7 @@ function licenseHide() {
     document.getElementById('driverType').disabled = false;
     var option = `
       <option>Dispatcher</option>
-      <option>Operational Driver</option>
+      <option>Operations Driver</option>
       <option>Executive Driver</option>
       <option>Mechanic</option>
     `
