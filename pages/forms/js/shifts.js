@@ -177,7 +177,37 @@ function showVehicleDetails(){
 
   }
 }
+function chooseDayoff(){
+  var dateData1 = document.getElementById('dateStart').value;
+  var month1 = new Date(dateData1).getMonth()+1;
+  var day1 = new Date(dateData1).getDate();
+  var year1 = new Date(dateData1).getFullYear();
+  var dateData2 = document.getElementById('dateEnd').value;
+  var month2 = new Date(dateData2).getMonth()+1;
+  var day2 = new Date(dateData2).getDate();
+  var year2 = new Date(dateData2).getFullYear();
+  var opt;
+  console.log(day2)
+  for(i = day1; i < day2; i++){
+    var mm = ('0'+ month1).slice(-2);
+    var dd = ('0'+ i).slice(-2);
 
+    opt += `
+    <option>${mm}/${dd}/${year1}</option>
+    `
+
+  }
+  document.getElementById("dayoff").innerHTML = opt;
+}
+function test(){
+
+  var x = document.querySelectorAll('#dayoff option:checked');
+  var y = [];
+  for(i = 0; i < x.length; i++){
+    y.push(document.querySelectorAll('#dayoff option:checked')[i].innerHTML);
+  }
+  console.log(y);
+}
 //add data to shiftsTable
 var submit = document.getElementById('submitShift');
 
@@ -192,7 +222,11 @@ submit.addEventListener('submit', (e) =>{
   var dateEnd = document.getElementById('dateEnd').value;
   var timeStart = document.getElementById('timeStart').value;
   var timeEnd = document.getElementById('timeEnd').value;
-  var dayoff = document.getElementById('dayoff').value;
+  var x = document.querySelectorAll('#dayoff option:checked');
+  var y = [];
+  for(i = 0; i < x.length; i++){
+    y.push(document.querySelectorAll('#dayoff option:checked')[i].innerHTML);
+  }
   var plateNo = document.getElementById('plateID').value;
   var vehicleType = document.getElementById('vehicleType').value;
   var vehicleModel = document.getElementById('vehicleModel').value;
@@ -215,7 +249,7 @@ submit.addEventListener('submit', (e) =>{
       from: timeStart,
       to: timeEnd
     },
-    dayoff: dayoff,
+    dayoff: y,
     carInfo:{
       plateNo: plateNo,
       vehicleType: vehicleType,
