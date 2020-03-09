@@ -15,4 +15,4 @@ auth.onAuthStateChanged(user => {
     }
   }
 
-})
+});
