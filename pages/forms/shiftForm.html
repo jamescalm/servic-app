@@ -404,38 +404,27 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid" id ="submitShift">
+      <div class="container-fluid" >
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-success">
+            <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Driver Assignment</h3>
+                <h3 class="card-title">Set Date</h3>
               </div>
               <form role="form">
                 <div class="card-body">
-                  <div class="form-group col-md-12">
-                    <label for="exampleInputEmail1 ">Driver Name</label>
-                    <select class="form-control select2bs4" style="width: 100%;" id="driverSelect" onchange ="licenseShow()" required>
 
-                    </select>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input class="form-control" placeholder="License No." id="userID" hidden>
-                    <label for="exampleInputEmail1 ">License No.</label>
-                    <input class="form-control" placeholder="License No." id="licenseID" disabled>
-                  </div>
                   <div class ="row col-md-12">
                     <div class="form-group col-md-6">
                       <label>Scheduled Duty From:</label>
                       <div class="input-group date" id="datepicker2" data-target-input="nearest">
-                        <div class="input-group-prepend" data-target="#datepicker2" data-toggle="datetimepicker">
+                        <div class="input-group-prepend" data-target="#datepicker2" data-toggle="datetimepicker" >
                           <div class="input-group-text">
                             <span class="far fa-calendar-alt"></span>
                           </div>
                         </div>
-                        <input type="text" id ="dateStart" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker2" required>
+                        <input required type="text" id ="dateStart" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker2">
                       </div>
                       <!-- /.input group -->
                     </div>
@@ -450,6 +439,32 @@
                       <!-- /.input group -->
                     </div>
                   </div>
+
+                </div>
+                <div class="card-footer">
+                  <button id="setDate" class="btn btn-primary" style ="float:right;">Set Date</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Driver Assignment</h3>
+              </div>
+              <form role="form">
+                <div class="card-body">
+                  <div class="form-group col-md-12">
+                    <label for="exampleInputEmail1 ">Driver Name</label>
+                    <select class="form-control select2bs4" style="width: 100%;" id="driverSelect" onchange ="licenseShow()" required disabled>
+
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <input class="form-control" placeholder="License No." id="userID" hidden>
+                    <label for="exampleInputEmail1 ">License No.</label>
+                    <input class="form-control" placeholder="License No." id="licenseID" disabled>
+                  </div>
+
                   <div class ="row col-md-12">
                     <div class="bootstrap-timepicker col-md-6">
                       <div class="form-group">
@@ -459,7 +474,7 @@
                           <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
-                          <input required type="text" id ="timeStart" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                          <input disabled required type="text" id ="timeStart" class="form-control datetimepicker-input" data-target="#timepicker2"/>
                         </div>
                         <!-- /.input group -->
                       </div>
@@ -473,7 +488,7 @@
                           <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
-                          <input required type="text" id ="timeEnd" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                          <input disabled required type="text" id ="timeEnd" class="form-control datetimepicker-input" data-target="#timepicker3"/>
                         </div>
                         <!-- /.input group -->
                       </div>
@@ -485,10 +500,10 @@
                   <div class="form-group col-md-6">
                     <label>Dayoff:</label>
                     <div class="input-group date" >
-                      <div onclick = "chooseDayoff()" class="input-group-prepend">
+                      <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                       </div>
-                      <select id ='dayoff' class="form-control select2" multiple="multiple" data-placeholder="Select a dayoff" >
+                      <select disabled required id ='dayoff' class="form-control select2" multiple="multiple" data-placeholder="Select a dayoff" >
                       <select>
                     </div>
 
@@ -510,7 +525,7 @@
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label for="exampleInputEmail1 ">Car Plate No.</label>
-                    <select class="form-control select2bs4" style="width: 100%;" id ="plateID" onchange ="showVehicleDetails()" required>
+                    <select disabled class="form-control select2bs4" style="width: 100%;" id ="plateID" onchange ="showVehicleDetails()" required>
 
                     </select>
                   </div>
@@ -540,7 +555,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" style ="float:right;" >Submit</button>
+                <button id ="submitShift" type="submit" class="btn btn-primary" style ="float:right;" disabled>Submit</button>
               </div>
             </form>
           </div>
