@@ -235,7 +235,6 @@ setDate.addEventListener('click', (e) =>{
     document.getElementById('timeStart').disabled = false;
     document.getElementById('timeEnd').disabled = false;
     document.getElementById('dayoff').disabled = false;
-
     shiftForm();
     chooseDayoff();
   }else{
