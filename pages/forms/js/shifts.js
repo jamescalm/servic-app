@@ -26,23 +26,80 @@ function shiftForm(){
 
     obj = JSON.parse(json);
 
-    for( i = 0 ; i < y ; i++){
-      if(obj.dataset[i].userTag == "Driver"){
-        const tr = `
-        <option>${obj.dataset[i].name}</option>
-        `;
-        html += tr;
-      }
-      document.getElementById("driverSelect").innerHTML = html;
+    db.collection('shiftsTable').where('status','==','Pending').onSnapshot(snapshot =>{
+      setupShifts(snapshot.docs);
+    })
+
+    const setupShifts = (data) =>{
+      var z = 0;
+      var json3 =`{"dataset": [`;
+      var obj3;
+
+      data.forEach(setup => {
+        shiftsTable = setup.data();
+
+        if (y == data.length-1){
+          json3 += JSON.stringify(shiftsTable);
+        }else{
+          json3 += JSON.stringify(shiftsTable)+",";
+        }
+        z++;
+      });
+      json3 += `]}`;
+      obj3 = JSON.parse(json3);
       var driverName = document.getElementById('driverSelect').value;
-      if(obj.dataset[i].name == driverName){
-        document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
-        document.getElementById("userID").value = obj.dataset[i].id;
-        console.log(document.getElementById("userID").value)
+
+      for( i = 0 ; i < y ; i++){
+        if(z==0){
+          if(obj.dataset[i].userTag == "Driver"){
+            const tr = `
+            <option>${obj.dataset[i].name}</option>
+            `;
+            html += tr;
+          }
+          document.getElementById("driverSelect").innerHTML = html;
+
+          if(obj.dataset[i].name == driverName){
+            document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
+            document.getElementById("userID").value = obj.dataset[i].id;
+            console.log(document.getElementById("userID").value)
+          }
+        }
+        for(k = 0; k < z; k++){
+          var compareName = obj3.dataset[k].driverInfo.driverName == driverName;
+
+          var dateRef = new Date(requestDate);
+          var dateFrom = new Date(obj3.dataset[k].shiftDate.from);
+          var dateTo = new Date(obj3.dataset[k].shiftDate.to);
+          var compDate = (dateRef <= dateTo)&&(dateRef >= dateFrom);
+
+          var compare = compareName&&compDate;
+
+          if(!compare){
+            if(obj.dataset[i].userTag == "Driver"){
+              const tr = `
+              <option>${obj.dataset[i].name}</option>
+              `;
+              html += tr;
+            }
+            document.getElementById("driverSelect").innerHTML = html;
+
+            if(obj.dataset[i].name == driverName){
+              document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
+              document.getElementById("userID").value = obj.dataset[i].id;
+              console.log(document.getElementById("userID").value)
+            }
+          }
+
+
+        }
+
       }
     }
 
+
   }
+
 
   //load vehicle
   db.collection('vehicleTable').onSnapshot(snapshot =>{
@@ -94,6 +151,28 @@ function shiftForm(){
   }
 
 }
+var setDate = document.getElementById('setDate');
+setDate.addEventListener('click', (e) =>{
+  e.preventDefault();
+  var compstart = document.getElementById('dateStart').value == '';
+  var compend = document.getElementById('dateEnd').value == '';
+  if(!(compstart||compend)){
+    document.getElementById('driverSelect').disabled = false;
+    document.getElementById('timeStart').disabled = false;
+    document.getElementById('timeEnd').disabled = false;
+    document.getElementById('dayoff').disabled = false;
+    document.getElementById('plateID').disabled = false;
+    chooseDayoff();
+  }else{
+    document.getElementById('driverSelect').disabled = true;
+    document.getElementById('timeStart').disabled = true;
+    document.getElementById('timeEnd').disabled = true;
+    document.getElementById('dayoff').disabled = true;
+    document.getElementById('plateID').disabled = true;
+  }
+
+});
+
 
 //show driver info
 function licenseShow(){
