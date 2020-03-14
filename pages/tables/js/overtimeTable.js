@@ -1,4 +1,4 @@
-buildtable()
+buildtable();
 
 function buildtable(){
 
