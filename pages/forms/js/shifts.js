@@ -113,7 +113,6 @@ function loadVehicle(){
   var x = 0;
   var json1 =`{"dataset": [`;
   var obj1;
-  const vehicleList = document.querySelector('.vehicleTable');
   const setupVehicle = (data) =>{
 
     let html =' ';
