@@ -13,7 +13,7 @@ signupForm.addEventListener('submit', (e) =>{
   var licenseNo = document.getElementById('license-no').value;
   var phone = document.getElementById('phone-number').value;
   var n = pass.localeCompare(conpass);
-
+  var driverType = document.getElementById('driverType').value;
   //confirm pass
   if(n == 0){
     //create user
@@ -30,6 +30,7 @@ signupForm.addEventListener('submit', (e) =>{
        password: pass,
        userTag: userTag,
        licenseNo: licenseNo,
+       driverType: driverType
      }).then(function(){
        alert('User successfully added');
        window.location.replace('home.html');
@@ -60,7 +61,17 @@ function licenseHide() {
 
   if(userTag == "Driver"){
     document.getElementById('license-no').disabled = false;
+    document.getElementById('driverType').disabled = false;
+    var option = `
+      <option>Dispatcher</option>
+      <option>Operations Driver</option>
+      <option>Executive Driver</option>
+      <option>Mechanic</option>
+    `
+    document.getElementById('driverType').innerHTML = option;
   }else{
     document.getElementById('license-no').disabled = true;
+    document.getElementById('driverType').disabled = true;
+    document.getElementById('driverType').value = '';
   }
 }

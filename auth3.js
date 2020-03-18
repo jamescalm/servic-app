@@ -11,8 +11,8 @@ auth.onAuthStateChanged(user => {
     var x = (a||b);
     var z = (host =='http://127.0.0.1:3000/register.html');
     if(x || z){
-      window.location.href = 'home.html'
+      // window.location.href = 'home.html'
     }
   }
 
-})
+});

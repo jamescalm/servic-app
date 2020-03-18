@@ -18,7 +18,7 @@ auth.onAuthStateChanged(user => {
     console.log('user logged out');
     var host1 = window.location.href;
     var y = (host1 =='http://127.0.0.1:3000/index.html');
-    if(y==false){
+    if(!y){
       window.location.href = '../index.html'
     }
 

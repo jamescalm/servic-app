@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Servic | Add Car Info</title>
+  <title>Servic | Overtime Request</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -172,16 +172,16 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item has-treeview">
-                 <a href="../../home.html" class="nav-link">
-                   <i class="nav-icon fas fa-tachometer-alt"></i>
-                   <p>
-                     Dashboard
+           <li class="nav-item has-treeview">
+             <a href="../../home.html" class="nav-link">
+               <i class="nav-icon fas fa-tachometer-alt"></i>
+               <p>
+                 Dashboard
 
-                   </p>
-                 </a>
+               </p>
+             </a>
 
-               </li>
+           </li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -235,8 +235,14 @@
                   <p>Assign Shifts</p>
                 </a>
               </li>
-              <li class="nav-item active">
-                <a href="../forms/carForm.html" class="nav-link active">
+              <li class="nav-item">
+                <a href="../forms/overtimeForm.html" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime Request</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../forms/carForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Car Info</p>
                 </a>
@@ -251,7 +257,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link ">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -320,7 +326,7 @@
               <p>Map</p>
             </a>
           </li>
-        
+
           <li class="nav-header">Messages</li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -385,18 +391,18 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" id="vehicleForm">
+  <div class="content-wrapper" id = "submitOvertime">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Car Info</h1>
+            <h1>Overtime Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">AddCarInfo</li>
+              <li class="breadcrumb-item active">Overtime Request</li>
             </ol>
           </div>
         </div>
@@ -404,89 +410,220 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" >
+    <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-2">
-              <!-- general form elements -->
 
-            <!-- col -->
-          </div>
-          <div class="col-md-8">
-
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Vehicle Info</h3>
-              </div>
-              <form role="form">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label >Car Plate No.</label>
-                      <input type="text" data-inputmask='"mask": "AAA 9999"' data-mask class="form-control" placeholder="Vehicle Plate No." id="plate-no" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputEmail1 ">Vehicle Type</label>
-                      <select class="form-control select2bs4" style="width: 100%;" id="vehicle-type" required>
-                        <option selected="selected">Van</option>
-                        <option>Truck</option>
-                        <option>Coaster Van</option>
-                        <option>Bus</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label >Vehicle Model</label>
-                      <input class="form-control" placeholder="Vehicle Model" id="model" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >No. of Pax</label>
-                      <input type ="number" class="form-control" placeholder="No. of Pax" id="pax-no" required>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>Vehicle Status</label>
-                      <select class="form-control select2bs4" style="width: 100%;" id="status" required>
-                        <option selected="selected">Vacant</option>
-                        <option>In Use</option>
-                        <option>Under Maintenance</option>
-                        <option>Inoperable</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Vehicle Image</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="fileButton">
-                        <label class="custom-file-label" for="fileButton">Choose file</label>
-                      </div>
-                      <div>
-                        <progress value ="0%" max ="100" id="uploader" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" style ="float:right;">Submit</button>
-                </div>
-              </form>
+        <div class="col-md-6">
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Driver Info</h3>
             </div>
-          <!-- 2nd col -->
-          </div>
-          <div class="col-md-2">
-              <!-- general form elements -->
+            <form role="form">
+              <div class="card-body">
+                <div class="form-group col-md-12">
+                  <label for="exampleInputEmail1 ">Driver Name</label>
+                  <select class="form-control select2bs4" style="width: 100%;" id="driverName" onchange ="loadShiftOnSelect()">
 
-            <!-- col -->
+                  </select>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="exampleInputEmail1 ">License No.</label>
+                  <input class="form-control" placeholder="License No." id="licenseID" disabled>
+                  <input class="form-control" id="driverID" disabled>
+                </div>
+                <div class ="row col-md-12">
+                  <div class="form-group col-md-6">
+                    <label>Scheduled Duty From:</label>
+                    <div class="input-group date" id="datepicker2" data-target-input="nearest">
+                      <div class="input-group-prepend"data-target="#datepicker2" data-toggle="datetimepicker">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="shiftDateFrom" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker2">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Scheduled Duty To:</label>
+                    <div class="input-group date" id="datepicker3" data-target-input="nearest">
+                      <div class="input-group-prepend" data-target="#datepicker3" data-toggle="datetimepicker">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="shiftDateTo" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker3">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                </div>
+                <div class ="row col-md-12">
+                  <div class="bootstrap-timepicker col-md-6">
+                    <div class="form-group">
+                      <label>Shift Start:</label>
+
+                      <div class="input-group date" id="timepicker2" data-target-input="nearest">
+                        <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                        </div>
+                        <input id="shiftTimeFrom" type="text" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                  </div>
+                  <div class="bootstrap-timepicker1 col-md-6">
+                    <div class="form-group">
+                      <label>Shift End:</label>
+
+                      <div class="input-group date" id="timepicker3" data-target-input="nearest">
+                        <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                        </div>
+                        <input id="shiftTimeTo" type="text" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Dayoff:</label>
+                    <div class="input-group mb-3" style="width: 100%;">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fas fa-calendar-day"></i>
+                        </div>
+                      </div>
+                      <input class="form-control" placeholder="Dayoff" id="dayoff" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-      <!--row -->
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Vehicle Info</h3>
+            </div>
+            <form role="form">
+              <div class="card-body">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1 ">Car Plate No.</label>
+                    <input class="form-control " id ="plateID" >
+
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1 ">Vehicle Type</label>
+                    <input class="form-control" placeholder="Vehicle Type"  id ="vehicleType" disabled>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1 ">Vehicle Model</label>
+                    <input class="form-control" placeholder="Vehicle Model" id ="vehicleModel" disabled>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label >No. of Pax</label>
+                    <input class="form-control" placeholder="No. of Pax" id ="paxNoVehicle" disabled>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <label>Vehicle Image</label>
+                    <div style ="height: 300px; width: 100%;">
+                      <img id ='vehicleImg' src='' style = "max-width: 100%; max-height: 100%;">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <!-- 2nd col -->
+        </div>
+        <!--row -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Overtime Info</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form">
+              <div class="card-body ">
+                <div class="form-group col-md-12">
+                  <label for="exampleInputPassword1">Requestee No</label>
+                  <input  class="form-control" id="requestNo" placeholder="Reference" disabled>
+                </div>
+
+                <div class ="row col-md-12">
+                  <div class="form-group col-md-6">
+                    <label>Date of Overtime:</label>
+                    <div class="input-group date" id="datepicker" data-target-input="nearest">
+                      <div class="input-group-prepend"data-target="#datepicker" data-toggle="datetimepicker">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id ="date" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker" required>
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+
+                </div>
+
+                <!-- Date and time range -->
+                <div class ="row col-md-12">
+                  <div class="bootstrap-timepicker col-md-6">
+                    <div class="form-group">
+                      <label>Time From:</label>
+
+                      <div class="input-group date" id="timepicker" data-target-input="nearest">
+                        <div class="input-group-prepend" data-target="#timepicker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><span class="far fa-clock"></span></div>
+                        </div>
+                        <input id ="timeStart" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="hh:mm" data-target="#timepicker" required>
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                  </div>
+                  <div class="bootstrap-timepicker1 col-md-6">
+                    <div class="form-group">
+                      <label>Time To:</label>
+
+                      <div class="input-group date" id="timepicker1" data-target-input="nearest">
+                        <div class="input-group-prepend" data-target="#timepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><span class="far fa-clock"></span></div>
+                        </div>
+                        <input id ="timeEnd" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="HH:mm" data-target="#timepicker1" required>
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                  </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Purpose/Details</label>
+                    <textarea id = "purpose" class="form-control" rows="3" placeholder="Purpose/Details"></textarea>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary" style ="float:right;" >Submit</button>
+            </div>
+          </form>
+        <!-- /.card -->
+        </div>
+        <!-- col -->
       </div>
-    </section>
-    <!-- /.content -->
+    </div>
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.content -->
+  </div>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.2
@@ -494,11 +631,18 @@
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
   </footer>
+</section>
+</div>
+  <!-- /.content-wrapper -->
 
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
@@ -509,7 +653,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
 
 
 <script>
@@ -529,15 +672,17 @@
   firebase.analytics();
   const auth = firebase.auth();
   const db = firebase.firestore();
-  const storage = firebase.storage();
+
+
 </script>
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<script src = "js/car.js"></script>
+
+<script src = "js/overtime.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaiHgdLEqYHMWBX3uaSZzJ_HmSJCm6zLA"></script>
+
 <script src = "../../auth1.js"></script>
 <script src = "../../logout1.js"></script>
 <!-- jQuery -->
-<script type = "module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
@@ -560,12 +705,79 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
-<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
-<script type="text/javascript">
-$(document).ready(function () {
-  bsCustomFileInput.init();
-});
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'HH:mm '
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#datepicker,#datepicker1,#datepicker2,#datepicker3').datetimepicker({
+      format: 'MM/DD/YYYY'
+    })
+
+    $('#timepicker,#timepicker1,#timepicker2,#timepicker3').datetimepicker({
+      format: 'HH:mm'
+    })
+
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
 </script>
 </body>
 </html>

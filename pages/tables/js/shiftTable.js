@@ -32,7 +32,7 @@ function buildtable(){
         <td>${obj.dataset[i].driverInfo.driverName}</td>
         <td>${obj.dataset[i].carInfo.plateNo}</td>
         <td>
-          <div style ="height: 150px; width: 150px;">
+          <div style ="height: 100px; width: 100px;">
             <img style ="max-height: 100%; max-width: 100%;"src = "${obj.dataset[i].carInfo.vehicleImg}">
           </div>
         </td>
@@ -45,15 +45,30 @@ function buildtable(){
           ${obj.dataset[i].shiftTime.from}<br>
           ${obj.dataset[i].shiftTime.to}
         </td>
-        <td>${obj.dataset[i].dayoff}</td>
+        <td id='td${i}'></td>
 
       </tr>
       `;
       html += tr;
 
+
     }
     document.getElementById("tablebody").innerHTML = html;
+    for(j =0; j < y; j++){
+      var length = obj.dataset[j].dayoff.length;
+      console.log(length)
+      var td = ``;
+      for(k = 0; k < length; k++){
+        if(k == length - 1){
+          td += `${obj.dataset[j].dayoff[k]}`
+        }else{
 
+          td += `${obj.dataset[j].dayoff[k]}<br>`
+        }
+
+      }
+      document.getElementById(`td${j}`).innerHTML = td;
+    }
   }
 
 }

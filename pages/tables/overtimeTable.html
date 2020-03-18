@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Servic | Add Car Info</title>
+  <title>AdminLTE 3 | DataTables</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,19 +11,8 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -166,8 +155,6 @@
     <!-- Sidebar -->
     <div class="sidebar">
 
-
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -177,7 +164,6 @@
                    <i class="nav-icon fas fa-tachometer-alt"></i>
                    <p>
                      Dashboard
-
                    </p>
                  </a>
 
@@ -214,8 +200,8 @@
           </li>
 
           <li class="nav-header">Information Management</li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -235,8 +221,8 @@
                   <p>Assign Shifts</p>
                 </a>
               </li>
-              <li class="nav-item active">
-                <a href="../forms/carForm.html" class="nav-link active">
+              <li class="nav-item">
+                <a href="../forms/carForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Car Info</p>
                 </a>
@@ -250,8 +236,8 @@
 
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link ">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -278,7 +264,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/shiftsTable.html" class="nav-link">
+                <a href="../tables/shiftsTable.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Shifts List</p>
                 </a>
@@ -320,7 +306,7 @@
               <p>Map</p>
             </a>
           </li>
-        
+
           <li class="nav-header">Messages</li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -385,18 +371,18 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" id="vehicleForm">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Car Info</h1>
+            <h1>Overtime Table</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">AddCarInfo</li>
+              <li class="breadcrumb-item active">OvertimeTable</li>
             </ol>
           </div>
         </div>
@@ -404,85 +390,87 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" >
-      <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-2">
-              <!-- general form elements -->
-
-            <!-- col -->
-          </div>
-          <div class="col-md-8">
-
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Vehicle Info</h3>
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Overtime Table</h3>
+              <div class ="col-md-4" style ="float:right;">
+                <input type="text" class="form-control" placeholder="Search here ..." onkeyup="search(table1,searchInput)" id="searchInput" />
               </div>
-              <form role="form">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label >Car Plate No.</label>
-                      <input type="text" data-inputmask='"mask": "AAA 9999"' data-mask class="form-control" placeholder="Vehicle Plate No." id="plate-no" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputEmail1 ">Vehicle Type</label>
-                      <select class="form-control select2bs4" style="width: 100%;" id="vehicle-type" required>
-                        <option selected="selected">Van</option>
-                        <option>Truck</option>
-                        <option>Coaster Van</option>
-                        <option>Bus</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label >Vehicle Model</label>
-                      <input class="form-control" placeholder="Vehicle Model" id="model" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >No. of Pax</label>
-                      <input type ="number" class="form-control" placeholder="No. of Pax" id="pax-no" required>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>Vehicle Status</label>
-                      <select class="form-control select2bs4" style="width: 100%;" id="status" required>
-                        <option selected="selected">Vacant</option>
-                        <option>In Use</option>
-                        <option>Under Maintenance</option>
-                        <option>Inoperable</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Vehicle Image</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="fileButton">
-                        <label class="custom-file-label" for="fileButton">Choose file</label>
-                      </div>
-                      <div>
-                        <progress value ="0%" max ="100" id="uploader" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" style ="float:right;">Submit</button>
-                </div>
-              </form>
             </div>
-          <!-- 2nd col -->
-          </div>
-          <div class="col-md-2">
-              <!-- general form elements -->
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="table1" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th id ="th1" >
+                      Driver Name
+                      <span onclick = "sortTable(th1,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th1,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                    <th  id ="th2">
+                      Vehicle Plate No.
+                      <span onclick = "sortTable(th2,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th2,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                    <th  id ="th4">
+                      Date Start<br>
+                      Date End
+                      <span onclick = "sortTable(th4,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th4,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                    <th  id ="th6">
+                      Shift Start<br>
+                      Shift End
+                      <span onclick = "sortTable(th6,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th6,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
 
-            <!-- col -->
+                    <th  id ="th8">
+                      Date of Overtime
+                      <span onclick = "sortTable(th8,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th8,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                    <th  id ="th9">
+                      Overtime Start<br>
+                      Overtime End
+                      <span onclick = "sortTable(th9,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th9,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                    <th  id ="th10">
+                      Purpose
+                      <span onclick = "sortTable(th10,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-up"></span>
+                      <span onclick = "sortTable2(th10,table1)"  style ="float:right; margin:1%;" class = "fas fa-arrow-down"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id ='tablebody'>
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Driver Name</th>
+                    <th>Vehicle Plate No.</th>
+                    <th>Date Start<br>Date End</th>
+                    <th>Time Start<br>Time End</th>
+                    <th>Date of Overtime</th>
+                    <th>Overtime Start<br>Overtime End</th>
+                    <th>Purpose</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
           </div>
-      <!--row -->
+          <!-- /.card -->
+
+
+        </div>
+        <!-- /.col -->
       </div>
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -495,7 +483,11 @@
     reserved.
   </footer>
 
-
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -508,10 +500,6 @@
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
-
-
 <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -529,43 +517,39 @@
   firebase.analytics();
   const auth = firebase.auth();
   const db = firebase.firestore();
-  const storage = firebase.storage();
+
+
 </script>
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<script src = "js/car.js"></script>
+
+<script src = "js/overtimeTable.js"></script>
 <script src = "../../auth1.js"></script>
 <script src = "../../logout1.js"></script>
+<script src ="js/sortAsc.js"></script>
+<script src ="js/search.js"></script>
 <!-- jQuery -->
-<script type = "module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<!-- InputMask -->
-<script src="../../plugins/moment/moment.min.js"></script>
-<script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-<!-- date-range-picker -->
-<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap color picker -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Bootstrap Switch -->
-<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- Page script -->
-<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-  bsCustomFileInput.init();
-});
+<!-- page script -->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+    });
+  });
 </script>
 </body>
 </html>
