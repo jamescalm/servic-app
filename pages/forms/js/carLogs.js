@@ -89,3 +89,49 @@ function carLogForm(a){
   }
 
 }
+
+function showVehicleDetails(){
+  db.collection('vehicleTable').onSnapshot(snapshot =>{
+    setupVehicle(snapshot.docs);
+  })
+  var x = 0;
+  var json =`{"dataset": [`;
+  var obj;
+  const vehicleList = document.querySelector('.vehicleTable');
+  const setupVehicle = (data) =>{
+
+    let html =' ';
+
+    data.forEach(setup => {
+      vehicle = setup.data();
+
+      if (x == data.length-1){
+        json += JSON.stringify(vehicle);
+      }else{
+        json += JSON.stringify(vehicle)+",";
+      }
+      x++;
+    });
+    json += `]}`;
+
+    obj = JSON.parse(json);
+    console.log(obj)
+
+    for( i = 0 ; i < x ; i++){
+
+      var plate = document.getElementById('plateID').value;
+      if(obj.dataset[i].plateNo == plate){
+        document.getElementById("vehicleType").value = obj.dataset[i].vehicleType;
+        document.getElementById("vehicleModel").value = obj.dataset[i].model;
+        document.getElementById("paxNo").value = obj.dataset[i].paxNo;
+        const img = `
+          <img id="Img" src = '${obj.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
+        `;
+
+        document.getElementById("vehicleImg").innerHTML = img;
+      }
+
+    }
+
+  }
+}
