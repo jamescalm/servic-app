@@ -498,9 +498,9 @@
 
                         <div class="input-group date" id="timepicker2" data-target-input="nearest">
                           <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-clock"></i></div>
+                              <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                           </div>
-                          <input disabled required type="text" id ="timeStart" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                          <input disabled required type="text" id ="logDate" class="form-control datetimepicker-input" data-target="#timepicker2"/>
                         </div>
                         <!-- /.input group -->
                       </div>
@@ -514,7 +514,7 @@
                           <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
-                          <input disabled required type="text" id ="timeEnd" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                          <input disabled required type="text" id ="logTime" class="form-control datetimepicker-input" data-target="#timepicker3"/>
                         </div>
                         <!-- /.input group -->
                       </div>
@@ -525,34 +525,36 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label >Starting Mileage</label>
+                      <input class= "form-control" placeholder="startMileageURL" id="startMileageURL">
                       <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="startMileage" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Starting Mileage Image</label>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="sMileageButton">
-                        <label class="custom-file-label" for="fileButton">Choose file</label>
+                        <input type="file" class="custom-file-input" id="sMileage">
+                        <label class="custom-file-label" id='filename'>Choose file</label>
                       </div>
                       <div>
                         <progress value ="0%" max ="100" id="uploader1" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                        <button type="submit" class="btn btn-info" style ="float:right;">Upload</button>
+                        <button onclick ="uploadImg(sMileage,uploader1,startMileageURL)"  class="btn btn-info" style ="float:right;">Upload</button>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label >Mileage After</label>
+                      <input class= "form-control" placeholder="endMileageURL" id="endMileageURL">
                       <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="endMileage" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Mileage After Image</label>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="eMileageButton">
-                        <label class="custom-file-label" for="fileButton">Choose file</label>
+                        <input type="file" class="custom-file-input" id="eMileage">
+                        <label class="custom-file-label" id='filename2'>Choose file</label>
                       </div>
                       <div>
                         <progress value ="0%" max ="100" id="uploader2" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                        <button type="submit" class="btn btn-info" style ="float:right;">Upload</button>
+                        <button onclick ="uploadImg(eMileage,uploader2,endMileageURL)" class="btn btn-info" style ="float:right;">Upload</button>
                       </div>
                     </div>
                   </div>
@@ -590,8 +592,8 @@
                     <div class="form-group col-md-6">
                       <label>Vehicle Fuel Receipt Image</label>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="fileButton">
-                        <label class="custom-file-label" for="fileButton">Choose file</label>
+                        <input type="file" class="custom-file-input" id="x">
+                        <label class="custom-file-label" for="x">Choose file</label>
                       </div>
                       <div>
                         <progress value ="0%" max ="100" id="uploader" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
@@ -642,7 +644,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
 
-
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -661,7 +663,7 @@
   firebase.analytics();
   const auth = firebase.auth();
   const db = firebase.firestore();
-
+  const storage = firebase.storage();
 
 </script>
 
