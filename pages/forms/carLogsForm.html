@@ -525,7 +525,7 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label >Starting Mileage</label>
-                      <input class= "form-control" placeholder="startMileageURL" id="startMileageURL">
+                      <input class= "form-control" placeholder="startMileageURL" id="startMileageURL" hidden>
                       <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="startMileage" required>
                     </div>
                     <div class="form-group col-md-6">
@@ -543,7 +543,7 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label >Mileage After</label>
-                      <input class= "form-control" placeholder="endMileageURL" id="endMileageURL">
+                      <input class= "form-control" placeholder="endMileageURL" id="endMileageURL" hidden>
                       <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="endMileage" required>
                     </div>
                     <div class="form-group col-md-6">
@@ -579,6 +579,7 @@
                         <option selected="selected">Gasoline</option>
                         <option>Diesel</option>
                         <option>Unleaded</option>
+                        <option>Gasoline</option>
                         <option>Kerosene</option>
                         <option>Others</option>
                       </select>
@@ -587,24 +588,25 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label >Fuel Price</label>
+                      <input class= "form-control" placeholder="fuelRecieptURL" id="fuelRecieptURL" hidden>
                       <input type ="number" class="form-control" placeholder="Fuel Price" id="fuelPrice" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Vehicle Fuel Receipt Image</label>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="x">
-                        <label class="custom-file-label" for="x">Choose file</label>
+                        <input type="file" class="custom-file-input" id="fuelReciept">
+                        <label class="custom-file-label" id='filename3'>Choose file</label>
                       </div>
                       <div>
-                        <progress value ="0%" max ="100" id="uploader" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                        <button type="submit" class="btn btn-info" style ="float:right;">Upload</button>
+                        <progress value ="0%" max ="100" id="uploader3" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
+                        <button onclick ="uploadImg(fuelReciept,uploader3,fuelRecieptURL)" class="btn btn-info" style ="float:right;">Upload</button>
                       </div>
                     </div>
                   </div>
 
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" style ="float:right;">Submit</button>
+                  <button type="submit" id = 'addVehicleLog' class="btn btn-primary" style ="float:right;">Submit</button>
                 </div>
               </form>
             </div>
