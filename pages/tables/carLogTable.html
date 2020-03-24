@@ -522,132 +522,196 @@
           </button>
         </div>
         <div class="modal-body">
-          <form role="form">
-            <div class="card-body">
-              <div class ="row">
-                <div class="form-group col-md-12">
-                  <label for="exampleInputEmail1 ">Log Reference</label>
-                  <input class="form-control" placeholder="Log Reference" id="carLogRef" disabled>
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Driver Info</h3>
                 </div>
-              </div>
-              <div class ="row ">
-                <div class="bootstrap-timepicker col-md-6">
-                  <div class="form-group">
-                    <label>Date:</label>
+                <form role="form">
+                  <div class="card-body">
 
-                    <div class="input-group date" id="timepicker2" data-target-input="nearest">
-                      <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                      </div>
-                      <input disabled required type="text" id ="logDate" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                    <div class="form-group col-md-12">
+                      <label for="exampleInputEmail1 ">Driver Name</label>
+                      <input class="form-control" placeholder="DriverName" id="driverName" disabled>
                     </div>
-                    <!-- /.input group -->
-                  </div>
-                  <!-- /.form group -->
-                </div>
-                <div class="bootstrap-timepicker1 col-md-6">
-                  <div class="form-group">
-                    <label>Time:</label>
-
-                    <div class="input-group date" id="timepicker3" data-target-input="nearest">
-                      <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-clock"></i></div>
-                      </div>
-                      <input disabled required type="text" id ="logTime" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                    <div class="form-group col-md-12">
+                      <input class="form-control" placeholder="License No." id="userID" hidden>
+                      <label for="exampleInputEmail1 ">License No.</label>
+                      <input class="form-control" placeholder="License No." id="licenseID" disabled>
                     </div>
-                    <!-- /.input group -->
-                  </div>
-                  <!-- /.form group -->
-                </div>
 
+                  </div>
+
+                </form>
               </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label >Starting Mileage</label>
-                  <input class= "form-control" placeholder="startMileageURL" id="startMileageURL" hidden>
-                  <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="startMileage" required>
+              <div class="card card-danger">
+                <div class="card-header">
+                  <h3 class="card-title">Vehicle Info</h3>
                 </div>
-                <div class="form-group col-md-6">
-                  <label>Starting Mileage Image</label>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="sMileage">
-                    <label class="custom-file-label" id='filename'>Choose file</label>
+                <form role="form">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1 ">Car Plate No.</label>
+                        <select class="form-control select2bs4" style="width: 100%;" id ="plateID" onchange ="showVehicleDetails()" required>
+
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1 ">Vehicle Type</label>
+                        <input class="form-control" placeholder="Vehicle Type"  id ="vehicleType" disabled>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1 ">Vehicle Model</label>
+                        <input class="form-control" placeholder="Vehicle Model" id ="vehicleModel" disabled>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >No. of Pax</label>
+                        <input class="form-control" placeholder="No. of Pax" id ="paxNo" disabled>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                        <label>Vehicle Image</label>
+                        <div id ="imgHolder4" style ="height: 300px; width: 100%;">
+                          <img id ="vehicleImg" style ="max-height: 100%; max-width: 100%;"src = "">
+                        </div>
+
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <progress value ="0%" max ="100" id="uploader1" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                    <button onclick ="uploadImg(sMileage,uploader1,startMileageURL)"  class="btn btn-info" style ="float:right;">Upload</button>
-                  </div>
-                </div>
+
+                </form>
               </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label >Mileage After</label>
-                  <input class= "form-control" placeholder="endMileageURL" id="endMileageURL" hidden>
-                  <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="endMileage" required>
+            <!-- col -->
+            </div>
+            <div class="col-md-6">
+              <div class="card card-info">
+                <div class="card-header">
+                  <h3 class="card-title">Vehicle Log</h3>
                 </div>
-                <div class="form-group col-md-6">
-                  <label>Mileage After Image</label>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="eMileage">
-                    <label class="custom-file-label" id='filename2'>Choose file</label>
+                <form role="form">
+                  <div class="card-body">
+                    <div class ="row">
+                      <div class="form-group col-md-12">
+                        <label for="exampleInputEmail1 ">Log Reference</label>
+                        <input class="form-control" placeholder="Log Reference" id="carLogRef" disabled>
+                      </div>
+                    </div>
+                    <div class ="row ">
+                      <div class="bootstrap-timepicker col-md-6">
+                        <div class="form-group">
+                          <label>Date:</label>
+
+                          <div class="input-group date" id="timepicker2" data-target-input="nearest">
+                            <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                            </div>
+                            <input disabled required type="text" id ="logDate" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                          </div>
+                          <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+                      </div>
+                      <div class="bootstrap-timepicker1 col-md-6">
+                        <div class="form-group">
+                          <label>Time:</label>
+
+                          <div class="input-group date" id="timepicker3" data-target-input="nearest">
+                            <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                            <input disabled required type="text" id ="logTime" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                          </div>
+                          <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label >Starting Mileage(km)</label>
+                        <input class= "form-control" placeholder="startMileageURL" id="startMileageURL" hidden>
+                        <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="startMileage" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Starting Mileage Image</label>
+                        <div id="imgHolder" style="height: 250px; width: 100%;">
+                          <img id="startMileageImg" style ="max-height: 100%; max-width: 100%;"src = "">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label >Mileage After(km)</label>
+                        <input class= "form-control" placeholder="endMileageURL" id="endMileageURL" hidden>
+                        <input type="number" class= "form-control" placeholder="Enter Mileage Here..." id="endMileage" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Mileage After Image</label>
+                        <div id="imgHolder2" style="height: 250px; width: 100%;">
+                          <img id="endMileageImg" style ="max-height: 100%; max-width: 100%;"src = "">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label >Mileage Difference(km)</label>
+                        <input type ="number" class="form-control" placeholder="Mileage Difference" id="mileDiff" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >Fuel Used (L)</label>
+                        <input type ="number" class="form-control" placeholder="Liters" id="liters" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label >Fuel Tanked (L)</label>
+                        <input type ="number" class="form-control" placeholder="Fuel Tanked" id="fuelTanked" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Fuel Type</label>
+                        <select class="form-control select2bs4" style="width: 100%;" id="fuelType" required>
+                          <option selected="selected">Gasoline</option>
+                          <option>Diesel</option>
+                          <option>Unleaded</option>
+                          <option>Gasoline</option>
+                          <option>Kerosene</option>
+                          <option>Others</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label >Fuel Price (PHP)</label>
+                        <input class= "form-control" placeholder="fuelRecieptURL" id="fuelRecieptURL" hidden>
+                        <input type ="number" class="form-control" placeholder="Fuel Price" id="fuelPrice" required>
+                        <label >Fuel Price (PHP)</label>
+                        <input type ="number" class="form-control" placeholder="Fuel Price" id="fuelTotal" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Vehicle Fuel Receipt Image</label>
+                        <div id="imgHolder3" style="height: 250px; width: 100%;">
+                          <img id="recieptImg" style ="max-height: 100%; max-width: 100%;"src = "">
+                        </div>
+                      </div>
+
+                    </div>
+
                   </div>
-                  <div>
-                    <progress value ="0%" max ="100" id="uploader2" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                    <button onclick ="uploadImg(eMileage,uploader2,endMileageURL)" class="btn btn-info" style ="float:right;">Upload</button>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label >Mileage Difference</label>
-                  <input type ="number" class="form-control" placeholder="Mileage Difference" id="mileDiff" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label >Fuel Used</label>
-                  <input type ="number" class="form-control" placeholder="Liters" id="liters" required>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label >Fuel Tanked</label>
-                  <input type ="number" class="form-control" placeholder="Fuel Tanked" id="fuelTanked" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Fuel Type</label>
-                  <select class="form-control select2bs4" style="width: 100%;" id="fuelType" required>
-                    <option selected="selected">Gasoline</option>
-                    <option>Diesel</option>
-                    <option>Unleaded</option>
-                    <option>Gasoline</option>
-                    <option>Kerosene</option>
-                    <option>Others</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label >Fuel Price</label>
-                  <input class= "form-control" placeholder="fuelRecieptURL" id="fuelRecieptURL" hidden>
-                  <input type ="number" class="form-control" placeholder="Fuel Price" id="fuelPrice" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label>Vehicle Fuel Receipt Image</label>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="fuelReciept">
-                    <label class="custom-file-label" id='filename3'>Choose file</label>
-                  </div>
-                  <div>
-                    <progress value ="0%" max ="100" id="uploader3" style="-webkit-appearance: none; appearance: none; width: 100%; margin-top: 1%"></progress>
-                    <button onclick ="uploadImg(fuelReciept,uploader3,fuelRecieptURL)" class="btn btn-info" style ="float:right;">Upload</button>
-                  </div>
-                </div>
+
+                </form>
               </div>
 
+            <!-- 2nd col -->
             </div>
-            <div class="card-footer">
-              <button type="submit" id = 'addVehicleLog' class="btn btn-primary" style ="float:right;">Submit</button>
-            </div>
-          </form>
+          <!--row -->
+          </div>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
