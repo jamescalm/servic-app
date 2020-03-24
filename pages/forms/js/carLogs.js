@@ -45,11 +45,11 @@ function carLogForm(a){
   db.collection('vehicleTable').onSnapshot(snapshot =>{
     setupVehicle(snapshot.docs);
   })
-  var x = 0;
-  var json1 =`{"dataset": [`;
-  var obj1;
-  const setupVehicle = (data) =>{
 
+  const setupVehicle = (data) =>{
+    var x = 0;
+    var json1 =`{"dataset": [`;
+    var obj1;
     let html =' ';
 
     data.forEach(setup => {
