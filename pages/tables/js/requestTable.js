@@ -78,7 +78,7 @@ function buildTable(){
     console.log(obj1);
     for( i = 0 ; i < x ; i++){
       const tr = `
-      <tr>
+      <tr onclick='moreInfo(this)'>
         <td>${obj1.dataset[i].requesteeInfo.name}</td>
         <td>${obj1.dataset[i].requesteeInfo.department}</td>
         <td>${obj1.dataset[i].paxNo}</td>
@@ -102,5 +102,50 @@ function buildTable(){
       html += tr;
     }
     document.getElementById("tablebody2").innerHTML = html;
+  }
+}
+function moreInfo(a){
+  $('#modal-xl').modal('show');
+  var id = a.getElementsByTagName('TD')[7].innerHTML;
+  console.log(id)
+
+  db.collection('requestDailyTable').where('id','==',id).onSnapshot(snapshot =>{
+    setupShifts(snapshot.docs);
+  })
+  const setupShifts = (data) =>{
+    let html ='';
+    var y = 0;
+    var json =`{"dataset": [`;
+    var obj;
+
+    data.forEach(setup => {
+      shiftsTable = setup.data();
+
+      if (y == data.length-1){
+        json += JSON.stringify(shiftsTable);
+      }else{
+        json += JSON.stringify(shiftsTable)+",";
+      }
+      y++;
+    });
+    json += `]}`;
+    obj = JSON.parse(json);
+    console.log(obj);
+    document.getElementById('requestID').value = obj.dataset[0].requestRef;
+    document.getElementById('requesteename').value = obj.dataset[0].requesteeInfo.name;
+    document.getElementById('requesteeID').value = obj.dataset[0].requesteeInfo.requesteeID;
+    document.getElementById('department').value = obj.dataset[0].requesteeInfo.department;
+    document.getElementById('paxNo').value = obj.dataset[0].paxNo;
+    document.getElementById('dateStart').value = obj.dataset[0].requestDate.from;
+    document.getElementById('dateEnd').value = obj.dataset[0].requestDate.to;
+    document.getElementById('timeStart').value = obj.dataset[0].requestTime.from;
+    document.getElementById('timeEnd').value = obj.dataset[0].requestTime.to;
+    document.getElementById('googleSearchFrom').value = obj.dataset[0].destinationFrom.location;
+    document.getElementById('fromLat').value = obj.dataset[0].destinationFrom.latitude;
+    document.getElementById('fromLng').value = obj.dataset[0].destinationFrom.longitude;
+    document.getElementById('googleSearchTo').value = obj.dataset[0].destinationTo.location;
+    document.getElementById('toLat').value = obj.dataset[0].destinationTo.latitude;
+    document.getElementById('toLat').value = obj.dataset[0].destinationTo.longitude;
+    document.getElementById('purpose').value = obj.dataset[0].purpose;
   }
 }
