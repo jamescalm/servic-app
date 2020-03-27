@@ -145,7 +145,48 @@ function moreInfo(a){
     document.getElementById('fromLng').value = obj.dataset[0].destinationFrom.longitude;
     document.getElementById('googleSearchTo').value = obj.dataset[0].destinationTo.location;
     document.getElementById('toLat').value = obj.dataset[0].destinationTo.latitude;
-    document.getElementById('toLat').value = obj.dataset[0].destinationTo.longitude;
+    document.getElementById('toLng').value = obj.dataset[0].destinationTo.longitude;
     document.getElementById('purpose').value = obj.dataset[0].purpose;
+    
+    initMap();
+  }
+
+  function initMap(){
+    var fromLat = document.getElementById('fromLat').value;
+    var fromLat1 = Number(fromLat);
+    var fromLng = document.getElementById('fromLng').value;
+    var fromLng1 = Number(fromLng);
+
+    var toLat = document.getElementById('toLat').value;
+    var toLat1 = Number(toLat);
+    var toLng = document.getElementById('toLng').value;
+    var toLng1 = Number(toLng);
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: toLat1, lng: toLng1},
+      zoom: 14,
+
+    });
+
+    var directionDisplay = new google.maps.DirectionsRenderer();
+    var directionService = new google.maps.DirectionsService();
+    directionDisplay.setMap(map);
+
+    var pickLoc = new google.maps.LatLng(fromLat1,fromLng1);
+    var destLoc = new google.maps.LatLng(toLat1,toLng1);
+
+    var request = {
+      origin: pickLoc,
+      destination: destLoc,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+
+    directionService.route(request, function(result,status){
+      console.log(result)
+      if(status == google.maps.DirectionsStatus.OK){
+        directionDisplay.setDirections(result);
+      }
+    });
   }
 }
