@@ -265,6 +265,7 @@ addVehicleLog.addEventListener('click', (e)=>{
   var logDate = document.getElementById('logDate').value;
   var logTime = document.getElementById('logTime').value;
 
+  var carLogRef = document.getElementById('carLogRef').value;
   var sMileageInput = document.getElementById('startMileage').value;
   var startMileage = Number(sMileageInput);
   var startMileageURL = document.getElementById('startMileageURL').value;
@@ -286,6 +287,7 @@ addVehicleLog.addEventListener('click', (e)=>{
   var fuelProduct = Number(fuelProductStr);
   console.log(mileDiff)
   db.collection('carLogsTable').add({
+    carLogRef: carLogRef,
     driverInfo: {
       driverName: driverName,
       licenseNo: licenseNo,
