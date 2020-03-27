@@ -145,7 +145,7 @@ function moreInfo(a){
     document.getElementById('paxNo').value = obj.dataset[0].carInfo.paxNo;
     document.getElementById('vehicleImg').src = obj.dataset[0].carInfo.vehicleImg;
 
-    // document.getElementById('carLogRef').value = obj.dataset[0].logRef;
+    document.getElementById('carLogRef').value = obj.dataset[0].carLogRef;
     document.getElementById('logDate').value = obj.dataset[0].logDate;
     document.getElementById('logTime').value = obj.dataset[0].logTime;
     document.getElementById('startMileage').value = obj.dataset[0].mileage.startMileage;
