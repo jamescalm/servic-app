@@ -27,7 +27,7 @@ function buildTable(){
     for( i = 0 ; i < y ; i++){
       if(obj.dataset[i].requestType == 'Daily'){
         const tr = `
-        <tr>
+        <tr onclick='moreInfo(this)'>
           <td>
             ${obj.dataset[i].shiftInfo.driverInfo.driverName}<br>
             ${obj.dataset[i].shiftInfo.carInfo.plateNo}
@@ -62,7 +62,7 @@ function buildTable(){
     for( j = 0 ; j < y ; j++){
       if(obj.dataset[j].requestType == 'On Call'){
         const tr = `
-        <tr>
+        <tr onclick='moreInfo(this)'>
           <td>
             ${obj.dataset[j].shiftInfo.driverInfo.driverName}<br>
             ${obj.dataset[j].shiftInfo.carInfo.plateNo}
@@ -94,4 +94,9 @@ function buildTable(){
     document.getElementById("tablebody1").innerHTML = html1;
   }
 
+}
+function moreInfo(a){
+  $('#modal-xl').modal('show');
+  var id = a.getElementsByTagName('TD')[8].innerHTML;
+  console.log(id)
 }
