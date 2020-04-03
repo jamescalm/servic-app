@@ -27,7 +27,7 @@ function buildtable(){
     console.log(obj);
     for( i = 0 ; i < y ; i++){
       const tr = `
-      <tr>
+      <tr onclick = 'moreInfo(this)'>
         <td>${obj.dataset[i].shiftInfo.driverInfo.driverName}</td>
         <td>${obj.dataset[i].shiftInfo.carInfo.plateNo}</td>
         <td>
@@ -60,4 +60,10 @@ function buildtable(){
 
   }
 
+}
+
+function moreInfo(a){
+  $('#modal-xl').modal('show');
+  var id = a.getElementsByTagName('TD')[7].innerHTML;
+  console.log(id)
 }
