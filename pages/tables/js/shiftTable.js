@@ -45,8 +45,8 @@ function buildtable(){
           ${obj.dataset[i].shiftTime.from}<br>
           ${obj.dataset[i].shiftTime.to}
         </td>
-        <td id='td${i}'></td>
-
+        <td id='tdet${i}'></td>
+        <td hidden>${obj.dataset[i].id}</td>
       </tr>
       `;
       html += tr;
@@ -67,13 +67,14 @@ function buildtable(){
         }
 
       }
-      document.getElementById(`td${j}`).innerHTML = td;
+      document.getElementById(`tdet${j}`).innerHTML = td;
     }
   }
 
 }
 
 function moreInfo(a){
+
   $('#modal-xl').modal('show');
   var id = a.getElementsByTagName('TD')[6].innerHTML;
   console.log(id)
@@ -103,12 +104,12 @@ function moreInfo(a){
 
     document.getElementById('driverName').value = obj.dataset[0].driverInfo.driverName;
     document.getElementById('licenseID').value = obj.dataset[0].driverInfo.licenseNo;
-    document.getElementById('driverID').value = obj.dataset[0].driverInfo.driverID;
+    document.getElementById('userID').value = obj.dataset[0].driverInfo.driverID;
 
-    document.getElementById('shiftDateFrom').value = obj.dataset[0].shiftDate.from;
-    document.getElementById('shiftDateTo').value = obj.dataset[0].shiftDate.to;
-    document.getElementById('shiftTimeFrom').value = obj.dataset[0].shiftTime.from;
-    document.getElementById('shiftTimeTo').value = obj.dataset[0].shiftTime.to;
+    document.getElementById('dateStart').value = obj.dataset[0].shiftDate.from;
+    document.getElementById('dateEnd').value = obj.dataset[0].shiftDate.to;
+    document.getElementById('timeStart').value = obj.dataset[0].shiftTime.from;
+    document.getElementById('timeEnd').value = obj.dataset[0].shiftTime.to;
     document.getElementById('dayoff').value = obj.dataset[0].dayoff;
 
     document.getElementById('plateID').value = obj.dataset[0].carInfo.plateNo;
