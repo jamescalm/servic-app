@@ -101,7 +101,13 @@ function moreInfo(a){
     json += `]}`;
     obj = JSON.parse(json);
     console.log(obj);
-
+    for( i = 0 ; i < y ; i++){
+      const tr = `
+      <option>${obj.dataset[0].carInfo.plateNo}</option>
+      `;
+      html += tr;
+    }
+    document.getElementById("plateID").innerHTML = html;
     document.getElementById('driverName').value = obj.dataset[0].driverInfo.driverName;
     document.getElementById('licenseID').value = obj.dataset[0].driverInfo.licenseNo;
     document.getElementById('userID').value = obj.dataset[0].driverInfo.driverID;
