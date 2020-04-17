@@ -1,7 +1,55 @@
+// //upload img
+// var fileButton = document.getElementById('fileButton');
+// var uploader = document.getElementById('uploader');
+// var file;
+// fileButton.addEventListener('change', function(e){
+//   e.preventDefault();
+//   //get file
+//   file = e.target.files[0];
+//   console.log(file)
+// });
+// var imageUpload = document.getElementById('imageUpload');
+// imageUpload.addEventListener('click', uploadImg, false);
+// function uploadImg(e){
+//   e.preventDefault();
+//   var day = new Date().getDate();
+//   var month = new Date().getMonth() + 1;
+//   var yyyy = new Date().getFullYear();
+//   var hour = new Date().getHours();
+//   var min = new Date().getMinutes();
+//   var sec = new Date().getSeconds();
+//   var MM = ('0'+ month).slice(-2);
+//   var dd = ('0'+ day).slice(-2);
+//   var HH = ('0'+ hour).slice(-2);
+//   var mm = ('0'+ min).slice(-2);
+//   var ss = ('0'+ sec).slice(-2);
+//
+//   var filename = MM + dd + yyyy + HH + mm + ss + file.name;
+//   console.log(filename);
+//   var storeRef = storage.ref('profileImages/' + filename);
+//
+//   var task = storeRef.put(file);
+//
+//   //progress bars
+//   task.on('state_changed',
+//     function progress(snapshot){
+//       var percentage = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+//       uploader.value = percentage;
+//     },
+//     function error(err){
+//       console.log(err);
+//     },
+//     function complete(){
+//       task.snapshot.ref.getDownloadURL().then(function(dlURL){
+//         document.getElementById("profileURL").value = dlURL;
+//       });
+//     }
+//   );
+// }
 //register
-const signupForm = document.querySelector("#signup-form");
+var register = document.getElementById("register");
 
-signupForm.addEventListener('submit', (e) =>{
+register.addEventListener('submit', (e) =>{
   e.preventDefault();
 
   var email = document.getElementById('signup-email').value;
@@ -24,6 +72,7 @@ signupForm.addEventListener('submit', (e) =>{
      db.collection('users').doc(user).set({
        id: user,
        name: fname,
+       profileImg: 'https://firebasestorage.googleapis.com/v0/b/finalapp-c0ad4.appspot.com/o/profileImages%2FemptyProfile.png?alt=media&token=aecc57a4-9ed4-42bc-b1b9-bfa5c8ec023d',
        department: dept,
        email: email,
        phone: phone,
@@ -55,6 +104,19 @@ signupForm.addEventListener('submit', (e) =>{
 
 })
 
+// document.getElementById('fileButton').addEventListener('change', handleFileSelect, false);
+//
+// function handleFileSelect(evt) {
+//     var files = evt.target.files;
+//     var f = files[0];
+//     var img = document.getElementById("profileImg");
+//     var reader = new FileReader();
+//     console.log(reader.result)
+//     reader.onloadend = function() {
+//        img.src = reader.result;
+//     }
+//     reader.readAsDataURL(f);
+// }
 
 function licenseHide() {
   var userTag = document.getElementById('user-tag').value;
