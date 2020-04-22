@@ -451,6 +451,7 @@
                         </div>
                       </div>
                     </div>
+                    <input type="text" class="form-control" placeholder="Name" id="userID" >
                     <div class="input-group mb-3">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="fileButton">
@@ -468,14 +469,13 @@
                     </div>
                     <div class="input-group mb-3" style="width: 100%;">
                       <label class="form-control" >Department</label>
-                      <select class="form-control select2bs4" style="width: 25%;" id="department" >
-                        <option selected="selected">Admin</option>
+                      <select class="form-control" style="width: 25%;" id="department" placeholder="Department">
+                        <option>Admin</option>
                         <option>Accounting</option>
                         <option>Human Resource</option>
                         <option>Housekeeping</option>
                         <option>Kitchen</option>
                         <option>Transportation</option>
-
                       </select>
                       <div class="input-group-append">
                         <div class="input-group-text">
@@ -486,8 +486,8 @@
 
                     <div class="input-group mb-3" style="width: 100%;">
                       <label class="form-control" >User Type</label>
-                      <select class="form-control select2bs4" style="width: 25%;" id="user-tag" onchange="licenseHide()" >
-                        <option selected="selected">Admin</option>
+                      <select class="form-control" style="width: 25%;" id="userTag" placeholder="User Type"   onchange="licenseHide()" >
+                        <option>Admin</option>
                         <option>Driver</option>
                         <option>Client</option>
                       </select>
@@ -526,16 +526,14 @@
                       </div>
                     </div>
 
-
-
                 </div>
                 <div class="card-footer">
                   <div class="row">
-                    <div class="col-md-8"></div>
-                    <div class="col-md-2">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3">
                       <button type="submit" class="btn btn-primary" style ="float:right; margin: 3%; width: 100%;">Update</button>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <a href="../home.html" class="btn btn-danger" style ="float:right; margin: 3%; width: 100%;">Cancel</a>
                     </div>
                   </div>
@@ -600,6 +598,7 @@
 
 </script>
 
+<script src = "js/update.js"></script>
 <script src = "../../auth2.js"></script>
 <script src = "../../logout2.js"></script>
 <!-- jQuery -->
@@ -629,75 +628,13 @@
 <!-- Page script -->
 <script>
   $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'HH:mm '
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#datepicker,#datepicker1,#datepicker2,#datepicker3').datetimepicker({
-      format: 'MM/DD/YYYY'
-    })
-
-    $('#timepicker,#timepicker1,#timepicker2,#timepicker3').datetimepicker({
-      format: 'HH:mm'
-    })
-
-
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    });
-
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
 
   })
 </script>
