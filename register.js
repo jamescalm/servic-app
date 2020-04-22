@@ -49,7 +49,7 @@
 //register
 var register = document.getElementById("register");
 
-register.addEventListener('submit', (e) =>{
+register.addEventListener('click', (e) =>{
   e.preventDefault();
 
   var email = document.getElementById('signup-email').value;
@@ -134,6 +134,7 @@ function licenseHide() {
   }else{
     document.getElementById('license-no').disabled = true;
     document.getElementById('driverType').disabled = true;
+    document.getElementById('driverType').innerHTML = "";
     document.getElementById('driverType').value = '';
   }
 }
