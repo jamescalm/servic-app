@@ -44,11 +44,9 @@ function updateProfile(a){
         document.getElementById('profileImg').src = obj.dataset[i].profileImg;
         document.getElementById('department').value = obj.dataset[i].department;
         document.getElementById('userTag').value = obj.dataset[i].userTag;
-        console.log(document.getElementById('userTag'))
         licenseHide();
         document.getElementById('license-no').value = obj.dataset[i].licenseNo;
         document.getElementById('driverType').value = obj.dataset[i].driverType;
-        console.log(document.getElementById('driverType'))
         document.getElementById('phone-number').value = obj.dataset[i].phone;
 
       }
@@ -106,6 +104,17 @@ var update = document.getElementById('update');
 update.addEventListener('click', uploadImg, false);
 function uploadImg(e){
   e.preventDefault();
+
+  //variables
+  var id = document.getElementById('userID').value;
+  var name = document.getElementById('signup-name').value;
+  var dept = document.getElementById('department').value;
+  var userTag = document.getElementById('userTag').value;
+  var licenseNo = document.getElementById('license-no').value;
+  var phone = document.getElementById('phone-number').value;
+  var driverType = document.getElementById('driverType').value;
+
+  //set date
   var day = new Date().getDate();
   var month = new Date().getMonth() + 1;
   var yyyy = new Date().getFullYear();
@@ -135,7 +144,25 @@ function uploadImg(e){
     },
     function complete(){
       task.snapshot.ref.getDownloadURL().then(function(dlURL){
-        document.getElementById("profileURL").value = dlURL;
+        console.log(dlURL);
+        db.collection('users').doc(id).update({
+          name: name,
+          profileImg: dlURL,
+          department: dept,
+          phone: phone,
+          userTag: userTag,
+          licenseNo: licenseNo,
+          driverType: driverType
+        }).then(function(docRef){
+          window.alert("Profile successfully updated");
+          console.log("success")
+        }).catch(function(error){
+          // An error happened.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          window.alert(errorMessage);
+        });
+
       });
     }
   );
