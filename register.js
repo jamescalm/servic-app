@@ -24,7 +24,7 @@ register.addEventListener('click', (e) =>{
      db.collection('users').doc(user).set({
        id: user,
        name: fname,
-       profileImg: 'https://firebasestorage.googleapis.com/v0/b/finalapp-c0ad4.appspot.com/o/profileImages%2FemptyProfile.png?alt=media&token=aecc57a4-9ed4-42bc-b1b9-bfa5c8ec023d',
+       profileImg: 'https://firebasestorage.googleapis.com/v0/b/finalapp-c0ad4.appspot.com/o/profileImages%2FemptyProfile.png?alt=media&token=c694c17f-9bfa-497d-a864-4b1e1cbfabdf',
        department: dept,
        email: email,
        phone: phone,
