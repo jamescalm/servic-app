@@ -164,7 +164,17 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-
+      <div class="user-panel mt-2  mb-2 d-flex">
+        <div class="image" >
+          <img id ="profileImage" src="" class="img-circle elevation-2" style="height: 50px; width: 50px;">
+        </div>
+        <div class="info" >
+          <a href="#" class="d-block">
+            <b id = 'userName'></b></br>
+            <p id = 'email'><p>
+          </a>
+        </div>
+      </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -1010,6 +1020,8 @@
 
 
 </script>
+
+<script src = "profile.js"></script>
 <script src = "auth.js"></script>
 <script src = "home.js"></script>
 <script src = "logout.js"></script>
