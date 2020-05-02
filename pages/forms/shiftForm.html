@@ -477,42 +477,66 @@
               </div>
               <form role="form">
                 <div class="card-body">
-                  <div class="form-group col-md-12">
-                    <label for="exampleInputEmail1 ">Driver Name</label>
-                    <select class="form-control select2bs4" style="width: 100%;" id="driverSelect" onchange ="licenseShow()" required disabled>
+                  <div class = 'row'>
+                    <div class="form-group col-md-12">
+                      <label for="exampleInputEmail1 ">Driver Name</label>
+                      <select class="form-control select2bs4" style="width: 100%;" id="driverSelect" onchange ="licenseShow()" required disabled>
 
-                    </select>
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-group col-md-12">
-                    <input class="form-control" placeholder="License No." id="userID" hidden>
-                    <label for="exampleInputEmail1 ">License No.</label>
-                    <input class="form-control" placeholder="License No." id="licenseID" disabled>
+                  <div class = 'row'>
+                    <div class="form-group col-md-12">
+                      <input class="form-control" placeholder="License No." id="userID" hidden>
+                      <label for="exampleInputEmail1 ">License No.</label>
+                      <input class="form-control" placeholder="License No." id="licenseID" disabled>
+                    </div>
+                  </div>
+                  <div class ="row">
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1 ">Shift Role</label>
+                      <select class="form-control select2bs4" style="width: 100%;" id="shiftRole" disabled required>
+                        <option>Reliever Shift</option>
+                        <option>Assigned Shift</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1 ">Shift Type</label>
+                      <select class="form-control select2bs4" style="width: 100%;" id="shiftType" onchange="shiftTime()" disabled required>
+                        <option>Day Shift</option>
+                        <option>Night Shift</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div class ="row col-md-12">
+                  <div class ="row">
                     <div class="bootstrap-timepicker col-md-6">
                       <div class="form-group">
                         <label>Shift Start:</label>
 
-                        <div class="input-group date" id="timepicker2" data-target-input="nearest">
-                          <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
+                        <div class="input-group date" >
+                          <div class="input-group-prepend" >
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
-                          <input disabled required type="text" id ="timeStart" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                          <select class="form-control select2bs4"  id="timeStart" disabled required>
+
+                          </select>
                         </div>
                         <!-- /.input group -->
                       </div>
                       <!-- /.form group -->
                     </div>
-                    <div class="bootstrap-timepicker1 col-md-6">
+                    <div class="bootstrap-timepicker col-md-6">
                       <div class="form-group">
                         <label>Shift End:</label>
 
-                        <div class="input-group date" id="timepicker3" data-target-input="nearest">
-                          <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
+                        <div class="input-group date" >
+                          <div class="input-group-prepend" >
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
-                          <input disabled required type="text" id ="timeEnd" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                          <select class="form-control select2bs4"  id="timeEnd"  disabled required>
+
+                          </select>
                         </div>
                         <!-- /.input group -->
                       </div>
@@ -520,19 +544,26 @@
                     </div>
 
                   </div>
-
-                  <div class="form-group col-md-6">
-                    <label>Dayoff:</label>
-                    <div class="input-group date" >
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                  <div class ='row'>
+                    <div class="form-group col-md-6">
+                      <label>Dayoff:</label>
+                      <div class="input-group date" >
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <select disabled required id ='dayoff' class="form-control select2" data-placeholder="Select a dayoff" >
+                          <option>Sunday</option>
+                          <option>Monday</option>
+                          <option>Tuesday</option>
+                          <option>Wednesday</option>
+                          <option>Thursday</option>
+                          <option>Friday</option>
+                          <option>Saturday</option>
+                        <select>
                       </div>
-                      <select disabled required id ='dayoff' class="form-control select2" multiple="multiple" data-placeholder="Select a dayoff" >
-                      <select>
+
                     </div>
-
                   </div>
-
                 </div>
                 <div class="card-footer">
                   <button id="setDriver" class="btn btn-primary" style ="float:right;">Set Driver</button>
