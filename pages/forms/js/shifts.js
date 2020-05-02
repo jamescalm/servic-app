@@ -1,13 +1,11 @@
-
-
 //load form
 function shiftForm(){
   //load driver
-  db.collection('users').onSnapshot(snapshot =>{
+  db.collection('users').where('userTag','==','Driver').onSnapshot(snapshot =>{
     setupUser(snapshot.docs);
   })
 
-  const userlist = document.querySelector('.users');
+
   const setupUser = (data) =>{
     var y = 0;
     var json =`{"dataset": [`;
@@ -52,23 +50,8 @@ function shiftForm(){
       console.log(obj3)
       var driverName;
       for( i = 0 ; i < y ; i++){
-        if(z==0){
-          if(obj.dataset[i].userTag == "Driver"){
-            const tr = `
-            <option>${obj.dataset[i].name}</option>
-            `;
-            html += tr;
-          }
-          document.getElementById("driverSelect").innerHTML = html;
-          driverName = document.getElementById('driverSelect').value;
-          if(obj.dataset[i].name == driverName){
-            document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
-            document.getElementById("userID").value = obj.dataset[i].id;
-            console.log(document.getElementById("userID").value)
-          }
-        }
+        var flag = 0;
         for(k = 0; k < z; k++){
-          driverName = document.getElementById('driverSelect').value;
           var requestDate = document.getElementById('dateStart').value;
           var compareName = obj3.dataset[k].driverInfo.driverName == obj.dataset[i].name;
 
@@ -78,25 +61,27 @@ function shiftForm(){
           var compDate = (dateRef <= dateTo)&&(dateRef >= dateFrom);
 
           var compare = compareName&&compDate;
-          console.log(compare);
-          if(!compare){
-            if(obj.dataset[i].userTag == "Driver"){
-              console.log(obj.dataset[i].name);
-              const tr = `
-              <option>${obj.dataset[i].name}</option>
-              `;
-              html += tr;
-            }
-            document.getElementById("driverSelect").innerHTML = html;
+          console.log(compareName,compDate);
+          if(compare){
+            flag = 1;
+          }
+        }
+        if(flag == 0){
+          const tr = `
+          <option>${obj.dataset[i].name}</option>
+          `;
+          html += tr;
 
-            driverName = document.getElementById('driverSelect').value;
-            if(obj.dataset[i].name == driverName){
-              document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
-              document.getElementById("userID").value = obj.dataset[i].id;
-            }
+          document.getElementById("driverSelect").innerHTML = html;
+          driverName = document.getElementById('driverSelect').value;
+          if(obj.dataset[i].name == driverName){
+            document.getElementById("licenseID").value = obj.dataset[i].licenseNo;
+            document.getElementById("userID").value = obj.dataset[i].id;
+            console.log(document.getElementById("userID").value)
           }
         }
       }
+      document.getElementById("driverSelect").innerHTML = html;
     }
 
 
@@ -110,11 +95,11 @@ function loadVehicle(){
   db.collection('vehicleTable').onSnapshot(snapshot =>{
     setupVehicle(snapshot.docs);
   })
-  var x = 0;
-  var json1 =`{"dataset": [`;
-  var obj1;
-  const setupVehicle = (data) =>{
 
+  const setupVehicle = (data) =>{
+    var x = 0;
+    var json1 =`{"dataset": [`;
+    var obj1;
     let html =' ';
 
     data.forEach(setup => {
@@ -234,13 +219,17 @@ setDate.addEventListener('click', (e) =>{
     document.getElementById('timeStart').disabled = false;
     document.getElementById('timeEnd').disabled = false;
     document.getElementById('dayoff').disabled = false;
+    document.getElementById('shiftRole').disabled = false;
+    document.getElementById('shiftType').disabled = false;
     shiftForm();
-    chooseDayoff();
+    shiftTime();
   }else{
     document.getElementById('driverSelect').disabled = true;
     document.getElementById('timeStart').disabled = true;
     document.getElementById('timeEnd').disabled = true;
     document.getElementById('dayoff').disabled = true;
+    document.getElementById('shiftRole').disabled = true;
+    document.getElementById('shiftType').disabled = true;
   }
 
 });
@@ -345,6 +334,48 @@ function showVehicleDetails(){
   }
 }
 
+function shiftTime(){
+  var shiftType = document.getElementById('shiftType').value;
+  var n = shiftType.localeCompare('Day Shift')
+  var htmlShift;
+  if (n==0){
+    htmlShift = `
+    <option>06:00</option>
+    <option>07:00</option>
+    <option>08:00</option>
+    <option>09:00</option>
+    <option>10:00</option>
+    <option>11:00</option>
+    <option>12:00</option>
+    <option>13:00</option>
+    <option>14:00</option>
+    <option>15:00</option>
+    <option>16:00</option>
+    <option>17:00</option>
+    <option>18:00</option>
+    `
+  }else{
+    htmlShift = `
+    <option>18:00</option>
+    <option>19:00</option>
+    <option>20:00</option>
+    <option>21:00</option>
+    <option>22:00</option>
+    <option>23:00</option>
+    <option>00:00</option>
+    <option>01:00</option>
+    <option>02:00</option>
+    <option>03:00</option>
+    <option>04:00</option>
+    <option>05:00</option>
+    <option>06:00</option>
+    `
+  }
+  document.getElementById("timeStart").innerHTML = htmlShift;
+  document.getElementById("timeEnd").innerHTML = htmlShift;
+}
+
+
 function chooseDayoff(){
   var dateData1 = document.getElementById('dateStart').value;
   var month1 = new Date(dateData1).getMonth()+1;
@@ -384,16 +415,11 @@ submit.addEventListener('click', (e) =>{
   var driverName = document.getElementById('driverSelect').value;
   var licenseNo = document.getElementById('licenseID').value;
   var uid = document.getElementById("userID").value;
-  console.log(uid)
   var dateStart = document.getElementById('dateStart').value;
   var dateEnd = document.getElementById('dateEnd').value;
   var timeStart = document.getElementById('timeStart').value;
   var timeEnd = document.getElementById('timeEnd').value;
-  var x = document.querySelectorAll('#dayoff option:checked');
-  var y = [];
-  for(i = 0; i < x.length; i++){
-    y.push(document.querySelectorAll('#dayoff option:checked')[i].innerHTML);
-  }
+  var dayoff = document.getElementById('dayoff').value;
   var plateNo = document.getElementById('plateID').value;
   var vehicleType = document.getElementById('vehicleType').value;
   var vehicleModel = document.getElementById('vehicleModel').value;
@@ -416,7 +442,7 @@ submit.addEventListener('click', (e) =>{
       from: timeStart,
       to: timeEnd
     },
-    dayoff: y,
+    dayoff: dayoff,
     carInfo:{
       plateNo: plateNo,
       vehicleType: vehicleType,
