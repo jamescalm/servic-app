@@ -495,9 +495,9 @@
                   <div class ="row">
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1 ">Shift Role</label>
-                      <select class="form-control select2bs4" style="width: 100%;" id="shiftRole" disabled required>
-                        <option>Reliever Shift</option>
-                        <option>Assigned Shift</option>
+                      <select class="form-control select2bs4" style="width: 100%;" id="dutyType" disabled required>
+                        <option>Reliever Duty</option>
+                        <option>Assigned Duty</option>
                       </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -551,7 +551,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                         </div>
-                        <select disabled required id ='dayoff' class="form-control select2" data-placeholder="Select a dayoff" >
+                        <select disabled required id ='dayoff' class="form-control select2" onchange="loadReliever()" data-placeholder="Select a dayoff" >
                           <option>Sunday</option>
                           <option>Monday</option>
                           <option>Tuesday</option>
@@ -562,6 +562,12 @@
                         <select>
                       </div>
 
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1 ">Assigned Reliever</label>
+                      <select class="form-control" style="width: 100%;" id="reliever"  disabled required>
+
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -605,8 +611,8 @@
                 <div class="row">
                   <div class="form-group col-md-12">
                     <label>Vehicle Image</label>
-                    <div id ="vehicleImg" style ="height: 300px; width: 100%;">
-
+                    <div id ="imgHolder" style ="height: 300px; width: 100%;">
+                      <img id="vehicleImg" src = '' style = "max-width: 100%; max-height: 100%;">
                     </div>
 
                   </div>
