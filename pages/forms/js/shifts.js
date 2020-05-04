@@ -83,11 +83,7 @@ function shiftForm(){
       }
       document.getElementById("driverSelect").innerHTML = html;
     }
-
-
   }
-
-
 }
 
 function loadVehicle(){
@@ -141,25 +137,26 @@ function loadVehicle(){
 
 
       for( i = 0 ; i < x ; i++){
-        if(z==0){
-          const tr = `
-          <option>${obj1.dataset[i].plateNo}</option>
-          `;
-          html += tr;
-          document.getElementById("plateID").innerHTML = html;
-
-          var plate = document.getElementById('plateID').value;
-          if(obj1.dataset[i].plateNo == plate){
-            document.getElementById("vehicleType").value = obj1.dataset[i].vehicleType;
-            document.getElementById("vehicleModel").value = obj1.dataset[i].model;
-            document.getElementById("paxNo").value = obj1.dataset[i].paxNo;
-            const img = `
-              <img id="Img" src = '${obj1.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
-            `;
-
-            document.getElementById("vehicleImg").innerHTML = img;
-          }
-        }
+        var flag = 0;
+        // if(z==0){
+        //   const tr = `
+        //   <option>${obj1.dataset[i].plateNo}</option>
+        //   `;
+        //   html += tr;
+        //   document.getElementById("plateID").innerHTML = html;
+        //
+        //   var plate = document.getElementById('plateID').value;
+        //   if(obj1.dataset[i].plateNo == plate){
+        //     document.getElementById("vehicleType").value = obj1.dataset[i].vehicleType;
+        //     document.getElementById("vehicleModel").value = obj1.dataset[i].model;
+        //     document.getElementById("paxNo").value = obj1.dataset[i].paxNo;
+        //     const img = `
+        //       <img id="Img" src = '${obj1.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
+        //     `;
+        //
+        //     document.getElementById("vehicleImg").innerHTML = img;
+        //   }
+        // }
         for(k = 0; k < z; k++){
           var comparePlate = (obj1.dataset[i].plateNo==obj2.dataset[k].carInfo.plateNo);
           var requestDate = document.getElementById('dateStart').value;
@@ -172,8 +169,14 @@ function loadVehicle(){
           var requestTime1 = document.getElementById('timeEnd').value;
           var timeRef = new Date('01/01/2000'+' '+requestTime);
           var timeRef1 = new Date('01/01/2000'+' '+requestTime1);
+          if(timeRef>=timeRef1){
+            timeRef1 = new Date('01/02/2000'+' '+requestTime1);
+          }
           var timeFrom = new Date('01/01/2000'+' '+obj2.dataset[k].shiftTime.from);
           var timeTo = new Date('01/01/2000'+' '+obj2.dataset[k].shiftTime.to);
+          if(timeFrom>=timeTo){
+            timeTo = new Date('01/02/2000'+' '+requestTime1);
+          }
           var compTime = (timeRef < timeTo)&&(timeRef >= timeFrom);
           var compTime1 = (timeRef1 <= timeTo)&&(timeRef1 > timeFrom);
           var compTime2 = (timeRef <= timeFrom)&&(timeRef1 >= timeTo);
@@ -181,28 +184,26 @@ function loadVehicle(){
           var compDateTime = compDate && compareTime;
 
           var compare1 = (comparePlate&&compDateTime)
-          console.log(compTime)
-          if(!compare1){
-            const tr = `
-            <option>${obj1.dataset[i].plateNo}</option>
-            `;
-            html += tr;
-            document.getElementById("plateID").innerHTML = html;
-
-            var plate = document.getElementById('plateID').value;
-            if(obj1.dataset[i].plateNo == plate){
-              document.getElementById("vehicleType").value = obj1.dataset[i].vehicleType;
-              document.getElementById("vehicleModel").value = obj1.dataset[i].model;
-              document.getElementById("paxNo").value = obj1.dataset[i].paxNo;
-              const img = `
-                <img id="Img" src = '${obj1.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
-              `;
-
-              document.getElementById("vehicleImg").innerHTML = img;
-            }
+          console.log(compare1)
+          if(compare1){
+            flag = 1;
           }
         }
+        if(flag==0){
+          const tr = `
+          <option>${obj1.dataset[i].plateNo}</option>
+          `;
+          html += tr;
+          document.getElementById("plateID").innerHTML = html;
 
+          var plate = document.getElementById('plateID').value;
+          if(obj1.dataset[i].plateNo == plate){
+            document.getElementById("vehicleType").value = obj1.dataset[i].vehicleType;
+            document.getElementById("vehicleModel").value = obj1.dataset[i].model;
+            document.getElementById("paxNo").value = obj1.dataset[i].paxNo;
+            document.getElementById("vehicleImg").src = obj1.dataset[i].vehicleImg;
+          }
+        }
       }
     }
 
@@ -219,17 +220,20 @@ setDate.addEventListener('click', (e) =>{
     document.getElementById('timeStart').disabled = false;
     document.getElementById('timeEnd').disabled = false;
     document.getElementById('dayoff').disabled = false;
-    document.getElementById('shiftRole').disabled = false;
+    document.getElementById('dutyType').disabled = false;
     document.getElementById('shiftType').disabled = false;
+    document.getElementById('reliever').disabled = false;
     shiftForm();
     shiftTime();
+    loadReliever();
   }else{
     document.getElementById('driverSelect').disabled = true;
     document.getElementById('timeStart').disabled = true;
     document.getElementById('timeEnd').disabled = true;
     document.getElementById('dayoff').disabled = true;
-    document.getElementById('shiftRole').disabled = true;
+    document.getElementById('dutyType').disabled = true;
     document.getElementById('shiftType').disabled = true;
+    document.getElementById('reliever').disabled = true;
   }
 
 });
@@ -239,10 +243,13 @@ setDriver.addEventListener('click', (e) =>{
   e.preventDefault();
   var comptimestart = document.getElementById('timeStart').value == '';
   var comptimeend = document.getElementById('timeEnd').value == '';
+  var dutyType = document.getElementById('dutyType').value;
   if(!(comptimestart||comptimeend)){
     document.getElementById('plateID').disabled = false;
     document.getElementById('submitShift').disabled = false;
-    loadVehicle()
+    if(dutyType == 'Assigned Duty'){
+      loadVehicle()
+    }
   }else{
     document.getElementById('plateID').disabled = true;
     document.getElementById('submitShift').disabled = true;
@@ -257,12 +264,11 @@ function licenseShow(){
   db.collection('users').onSnapshot(snapshot =>{
     setupUser(snapshot.docs);
   })
-  var y = 0;
-  var json =`{"dataset": [`;
-  var obj;
-  const userlist = document.querySelector('.users');
-  const setupUser = (data) =>{
 
+  const setupUser = (data) =>{
+    var y = 0;
+    var json =`{"dataset": [`;
+    var obj;
     data.forEach(setup => {
       users = setup.data();
 
@@ -292,12 +298,12 @@ function showVehicleDetails(){
   db.collection('vehicleTable').onSnapshot(snapshot =>{
     setupVehicle(snapshot.docs);
   })
-  var x = 0;
-  var json =`{"dataset": [`;
-  var obj;
+
   const vehicleList = document.querySelector('.vehicleTable');
   const setupVehicle = (data) =>{
-
+    var x = 0;
+    var json =`{"dataset": [`;
+    var obj;
     let html =' ';
 
     data.forEach(setup => {
@@ -322,18 +328,56 @@ function showVehicleDetails(){
         document.getElementById("vehicleType").value = obj.dataset[i].vehicleType;
         document.getElementById("vehicleModel").value = obj.dataset[i].model;
         document.getElementById("paxNo").value = obj.dataset[i].paxNo;
-        const img = `
-          <img id="Img" src = '${obj.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
-        `;
-
-        document.getElementById("vehicleImg").innerHTML = img;
+        document.getElementById("vehicleImg").src = obj.dataset[i].vehicleImg;
       }
 
     }
 
   }
 }
+function loadReliever(){
+  var dutyType = document.getElementById('dutyType').value;
+  if(dutyType == 'Assigned Duty'){
+    db.collection('shiftsTable').where('status','==','Pending').where('dutyType','==','Reliever Duty').onSnapshot(snapshot =>{
+      setupShifts(snapshot.docs);
+    })
 
+    const setupShifts = (data) =>{
+      var y = 0;
+      var json =`{"dataset": [`;
+      var obj;
+      var html;
+
+      data.forEach(setup => {
+        shiftsTable = setup.data();
+        console.log(data.length);
+        if (y == data.length-1){
+          json += JSON.stringify(shiftsTable);
+        }else{
+          json += JSON.stringify(shiftsTable)+",";
+        }
+        y++;
+      });
+      json += `]}`;
+      obj = JSON.parse(json);
+      console.log(obj)
+      for( i = 0 ; i < y ; i++){
+        var dayoff = document.getElementById('dayoff').value;
+        var compDayOff = obj.dataset[i].dayoff == dayoff;
+        if(!compDayOff){
+          const name = `
+          <option>${obj.dataset[i].driverInfo.driverName}</option>
+          `
+          html += name
+        }
+      }
+      document.getElementById("reliever").innerHTML = html;
+    }
+  }else{
+    document.getElementById("reliever").value = '';
+    document.getElementById("reliever").innerHTML = '';
+  }
+}
 function shiftTime(){
   var shiftType = document.getElementById('shiftType').value;
   var n = shiftType.localeCompare('Day Shift')
@@ -375,7 +419,7 @@ function shiftTime(){
   document.getElementById("timeEnd").innerHTML = htmlShift;
 }
 
-
+//choosing different dayoffs
 function chooseDayoff(){
   var dateData1 = document.getElementById('dateStart').value;
   var month1 = new Date(dateData1).getMonth()+1;
@@ -398,6 +442,8 @@ function chooseDayoff(){
   }
   document.getElementById("dayoff").innerHTML = opt;
 }
+
+//multiple select
 function test(){
 
   var x = document.querySelectorAll('#dayoff option:checked');
@@ -407,6 +453,7 @@ function test(){
   }
   console.log(y);
 }
+
 //add data to shiftsTable
 var submit = document.getElementById('submitShift');
 
@@ -417,15 +464,18 @@ submit.addEventListener('click', (e) =>{
   var uid = document.getElementById("userID").value;
   var dateStart = document.getElementById('dateStart').value;
   var dateEnd = document.getElementById('dateEnd').value;
+  var dutyType = document.getElementById('dutyType').value;
+  var shiftType = document.getElementById('shiftType').value;
   var timeStart = document.getElementById('timeStart').value;
   var timeEnd = document.getElementById('timeEnd').value;
   var dayoff = document.getElementById('dayoff').value;
+  var reliever = document.getElementById('reliever').value;
   var plateNo = document.getElementById('plateID').value;
   var vehicleType = document.getElementById('vehicleType').value;
   var vehicleModel = document.getElementById('vehicleModel').value;
   var paxNo = document.getElementById('paxNo').value;
   var paxInput = Number(paxNo);
-  var vehicleImg = document.getElementById('Img').src;
+  var vehicleImg = document.getElementById('vehicleImg').src;
 
   db.collection('shiftsTable').add({
     driverInfo: {
@@ -438,11 +488,14 @@ submit.addEventListener('click', (e) =>{
       from: dateStart,
       to: dateEnd
     },
+    dutyType: dutyType,
+    shiftType: shiftType,
     shiftTime: {
       from: timeStart,
       to: timeEnd
     },
     dayoff: dayoff,
+    reliever: reliever,
     carInfo:{
       plateNo: plateNo,
       vehicleType: vehicleType,
@@ -455,14 +508,16 @@ submit.addEventListener('click', (e) =>{
   }).then(function(docRef){
       db.collection('shiftsTable').doc(docRef.id).update({
         id: docRef.id
-      })
-      document.getElementById('dateStart').value = "";
-      document.getElementById('dateEnd').value = "";
-      document.getElementById('timeStart').value = "";
-      document.getElementById('timeEnd').value = "";
-      document.getElementById('plateID').value = "";
+      }).then(function(){
+        window.alert("Data added to Shift List");
+        location.reload()
+      }).catch(function(error){
+      // An error happened.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      window.alert(errorMessage);
+      });
 
-      window.alert("Data added to Shift List");
   }).catch(function(error){
   // An error happened.
   var errorCode = error.code;
