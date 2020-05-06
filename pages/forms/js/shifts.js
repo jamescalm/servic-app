@@ -138,25 +138,6 @@ function loadVehicle(){
 
       for( i = 0 ; i < x ; i++){
         var flag = 0;
-        // if(z==0){
-        //   const tr = `
-        //   <option>${obj1.dataset[i].plateNo}</option>
-        //   `;
-        //   html += tr;
-        //   document.getElementById("plateID").innerHTML = html;
-        //
-        //   var plate = document.getElementById('plateID').value;
-        //   if(obj1.dataset[i].plateNo == plate){
-        //     document.getElementById("vehicleType").value = obj1.dataset[i].vehicleType;
-        //     document.getElementById("vehicleModel").value = obj1.dataset[i].model;
-        //     document.getElementById("paxNo").value = obj1.dataset[i].paxNo;
-        //     const img = `
-        //       <img id="Img" src = '${obj1.dataset[i].vehicleImg}' style = "max-width: 100%; max-height: 100%;">
-        //     `;
-        //
-        //     document.getElementById("vehicleImg").innerHTML = img;
-        //   }
-        // }
         for(k = 0; k < z; k++){
           var comparePlate = (obj1.dataset[i].plateNo==obj2.dataset[k].carInfo.plateNo);
           var requestDate = document.getElementById('dateStart').value;
