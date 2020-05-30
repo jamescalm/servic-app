@@ -66,12 +66,14 @@ function initMap() {
     var request = {
       origin: pickLoc,
       destination: destLoc,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
     };
 
     directionService.route(request, function(result,status){
       console.log(result)
       if(status == google.maps.DirectionsStatus.OK){
+        console.log(result.routes[0].legs[0].distance)
         directionDisplay.setDirections(result);
       }
     });
