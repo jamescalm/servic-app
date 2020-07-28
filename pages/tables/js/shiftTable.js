@@ -45,7 +45,7 @@ function buildtable(){
           ${obj.dataset[i].shiftTime.from}<br>
           ${obj.dataset[i].shiftTime.to}
         </td>
-        <td id='tdet${i}'></td>
+        <td id='tdet${i}'>${obj.dataset[i].dayoff}</td>
         <td hidden>${obj.dataset[i].id}</td>
       </tr>
       `;
@@ -54,21 +54,21 @@ function buildtable(){
 
     }
     document.getElementById("tablebody").innerHTML = html;
-    for(j =0; j < y; j++){
-      var length = obj.dataset[j].dayoff.length;
-      console.log(length)
-      var td = ``;
-      for(k = 0; k < length; k++){
-        if(k == length - 1){
-          td += `${obj.dataset[j].dayoff[k]}`
-        }else{
-
-          td += `${obj.dataset[j].dayoff[k]}<br>`
-        }
-
-      }
-      document.getElementById(`tdet${j}`).innerHTML = td;
-    }
+    // for(j =0; j < y; j++){
+    //   var length = obj.dataset[j].dayoff.length;
+    //   console.log(length)
+    //   var td = ``;
+    //   for(k = 0; k < length; k++){
+    //     if(k == length - 1){
+    //       td += `${obj.dataset[j].dayoff[k]}`
+    //     }else{
+    //
+    //       td += `${obj.dataset[j].dayoff[k]}<br>`
+    //     }
+    //
+    //   }
+    //   document.getElementById(`tdet${j}`).innerHTML = td;
+    // }
   }
 
 }
