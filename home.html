@@ -38,7 +38,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Homea</a>
+        <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -164,7 +164,17 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-
+      <div class="user-panel mt-2  mb-2 d-flex">
+        <div class="image" >
+          <img id ="profileImage" src="" class="img-circle elevation-2" style="height: 50px; width: 50px;">
+        </div>
+        <div class="info" >
+          <a href="#" class="d-block">
+            <b id = 'userName'></b></br>
+            <p id = 'email'><p>
+          </a>
+        </div>
+      </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -232,6 +242,12 @@
                   <p>Assign Shifts</p>
                 </a>
               </li>
+              <li class="nav-item active">
+                <a href="pages/forms/leaveRequestForm.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Leave Request</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="pages/forms/overtimeForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -247,7 +263,7 @@
               <li class="nav-item">
                 <a href="pages/forms/carLogsForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Vehicle Logs Form</p>
+                  <p>Car Logs Form</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -287,6 +303,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="pages/tables/carLogTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="pages/tables/shiftsTable.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Shifts List</p>
@@ -295,7 +317,7 @@
               <li class="nav-item">
                 <a href="pages/tables/overtimeTable.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Overtime Request</p>
+                  <p>Overtime List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -415,6 +437,7 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
+
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -422,6 +445,12 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <div class="row">
+          <div class ="form-group col-md-12">
+            <button id="updateShift" class="btn btn-primary" style ="float:left;">Update Shift</button>
+          </div>
+        </div>
+        <!-- /.row -->
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
@@ -1004,6 +1033,8 @@
 
 
 </script>
+
+<script src = "profile.js"></script>
 <script src = "auth.js"></script>
 <script src = "home.js"></script>
 <script src = "logout.js"></script>

@@ -235,10 +235,22 @@
                   <p>Assign Shifts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="forms/overtimeForm.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime Request</p>
+                </a>
+              </li>
               <li class="nav-item active">
                 <a href="forms/carForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Car Info</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="forms/carLogsForm.html" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs Form</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -278,9 +290,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="tables/carLogTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="tables/shiftsTable.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Shifts List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="tables/overtimeTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -320,14 +344,6 @@
               <p>Map</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li> -->
           <li class="nav-header">Messages</li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -414,22 +430,63 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-
-          <div class="col-md-12">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10">
 
             <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Map</h3>
               </div>
               <form role="form">
-                <div style = "height: 800px;  ">
-                  <div id = "map" style = "height: 90%; width: 90%; margin: 5%; ">
-
+                <div class="card-body ">
+                  <div class ="row col-md-12">
+                    <div class="form-group col-md-6">
+                      <label>Destination From:</label>
+                      <div class="input-group mb-3" style="width: 100%;">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <span class="fas fa-map-marker-alt"></span>
+                          </div>
+                        </div>
+                        <input type = "text" class="form-control" id="googleSearchFrom" placeholder="Search place here" >
+                      </div>
+                      <input class="form-control" id="fromLat" placeholder="Latitude" disabled>
+                      <input class="form-control" id="fromLng" placeholder="Longitude" disabled>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Destination To:</label>
+                          <div class="input-group mb-3" style="width: 100%;">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <span class="fas fa-map-marker-alt"></span>
+                            </div>
+                          </div>
+                          <input type = "text" class="form-control" id="googleSearchTo" placeholder="Search place here" >
+                        </div>
+                        <input class="form-control" id="toLat" placeholder="Latitude" disabled>
+                        <input class="form-control" id="toLng" placeholder="Longitude" disabled onchange ="calculateRoute()">
+                      </div>
+                    </div>
+                  </div>
+                  <div class ="row col-md-12" >
+                    <div class ="form-group col-md-5">
+                      <button id='resetBtn' class="btn btn-primary" style ='width:100%; margin: 1%;'>Reset</button>
+                    </div>
+                    <div class ="form-group col-md-7">
+                    </div>
+                  </div>
+                  <div class ="row col-md-12" >
+                    <div id ="map" style ="height: 650px; width: 100%;">
+                    </div>
                   </div>
                 </div>
               </form>
             </div>
           <!-- 2nd col -->
+          </div>
+          <div class="col-md-1">
           </div>
 
       <!--row -->
@@ -483,10 +540,11 @@
 
 </script>
 
+<script src = "js/map.js"></script>
 <script src = "../../auth2.js"></script>
 <script src = "../../logout2.js"></script>
 
-<script>
+<!-- <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -501,10 +559,9 @@
         });
 
       }
-</script>
+</script> -->
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaiHgdLEqYHMWBX3uaSZzJ_HmSJCm6zLA&callback=initMap"
-    ></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaiHgdLEqYHMWBX3uaSZzJ_HmSJCm6zLA&callback=initMap&libraries=places"></script>
 
 <script type = "module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script src="../../plugins/jquery/jquery.min.js"></script>

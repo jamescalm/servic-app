@@ -190,3 +190,50 @@ function buildtable1(){
   }
 
 }
+
+var updateShift = document.getElementById('updateShift');
+updateShift.addEventListener('click', update, false);
+function update(e){
+  e.preventDefault();
+  db.collection('shiftsTable').where('status','==','Pending').onSnapshot(snapshot =>{
+    setupShifts(snapshot.docs);
+  })
+
+  const setupShifts = (data) =>{
+    var y = 0;
+    var json =`{"dataset": [`;
+    var obj;
+
+    data.forEach(setup => {
+      shiftsTable = setup.data();
+      console.log(data.length);
+      if (y == data.length-1){
+        json += JSON.stringify(shiftsTable);
+      }else{
+        json += JSON.stringify(shiftsTable)+",";
+      }
+      y++;
+    });
+    json += `]}`;
+    obj = JSON.parse(json);
+    console.log(obj)
+    for(i = 0 ; i < y ; i++){
+      var dateRef = new Date();
+      var dateFrom = new Date(obj.dataset[i].shiftDate.from);
+      var dateTo = new Date(obj.dataset[i].shiftDate.to);
+      var compDate = (dateRef <= dateTo)&&(dateRef >= dateFrom);
+      if(!compDate){
+        db.collection('shiftsTable').doc(obj.dataset[i].id).update({
+          status: "Done"
+        }).then(function(docRef){
+          console.log("success")
+        }).catch(function(error){
+          // An error happened.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          window.alert(errorMessage);
+        });
+      }
+    }
+  }
+}

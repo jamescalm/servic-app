@@ -37,7 +37,7 @@ function sortTable(a,b){
 
 function sortTable2(a,b){
   var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById(b.id);
+  table = b;
   switching = true;
   /*Make a loop that will continue until
   no switching has been done:*/
@@ -54,6 +54,7 @@ function sortTable2(a,b){
       one from current row and one from the next:*/
       x = rows[i].getElementsByTagName("TD")[a.cellIndex];
       y = rows[i + 1].getElementsByTagName("TD")[a.cellIndex];
+      console.log(rows)
       //check if the two rows should switch place:
       if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
         //if so, mark as a switch and break the loop:

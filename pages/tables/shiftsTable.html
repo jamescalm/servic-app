@@ -222,9 +222,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../forms/overtimeForm.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime Request</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../forms/carForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Car Info</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../forms/carLogsForm.html" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs Form</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -264,9 +276,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../tables/carLogTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../tables/shiftsTable.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Shifts List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../tables/overtimeTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -468,6 +492,182 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Overtime List Information</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <section class="content">
+            <div class="container-fluid" >
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="card card-info">
+                    <div class="card-header">
+                      <h3 class="card-title">Date</h3>
+                    </div>
+                    <form role="form">
+                      <div class="card-body">
+
+                        <div class ="row col-md-12">
+                          <div class="form-group col-md-6">
+                            <label>Scheduled Duty From:</label>
+                            <div class="input-group date" id="datepicker2" data-target-input="nearest">
+                              <div class="input-group-prepend" data-target="#datepicker2" data-toggle="datetimepicker" >
+                                <div class="input-group-text">
+                                  <span class="far fa-calendar-alt"></span>
+                                </div>
+                              </div>
+                              <input required type="text" id ="dateStart" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker2">
+                            </div>
+                            <!-- /.input group -->
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Scheduled Duty To:</label>
+                            <div class="input-group date" id="datepicker3" data-target-input="nearest">
+                              <div class="input-group-prepend" data-target="#datepicker3" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                              </div>
+                              <input required type="text" id ="dateEnd"class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker3">
+                            </div>
+                            <!-- /.input group -->
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </form>
+                  </div>
+
+                  <div class="card card-success">
+                    <div class="card-header">
+                      <h3 class="card-title">Driver Assignment</h3>
+                    </div>
+                    <form role="form">
+                      <div class="card-body">
+                        <div class="form-group col-md-12">
+                          <label for="exampleInputEmail1 ">Driver Name</label>
+                          <input class="form-control" placeholder="License No." id="driverName" disabled>
+                        </div>
+                        <div class="form-group col-md-12">
+                          <input class="form-control" placeholder="License No." id="userID" hidden>
+                          <label for="exampleInputEmail1 ">License No.</label>
+                          <input class="form-control" placeholder="License No." id="licenseID" disabled>
+                        </div>
+
+                        <div class ="row col-md-12">
+                          <div class="bootstrap-timepicker col-md-6">
+                            <div class="form-group">
+                              <label>Shift Start:</label>
+
+                              <div class="input-group date" id="timepicker2" data-target-input="nearest">
+                                <div class="input-group-prepend" data-target="#timepicker2" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                </div>
+                                <input disabled required type="text" id ="timeStart" class="form-control datetimepicker-input" data-target="#timepicker2"/>
+                              </div>
+                              <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                          </div>
+                          <div class="bootstrap-timepicker1 col-md-6">
+                            <div class="form-group">
+                              <label>Shift End:</label>
+
+                              <div class="input-group date" id="timepicker3" data-target-input="nearest">
+                                <div class="input-group-prepend" data-target="#timepicker3" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                </div>
+                                <input disabled required type="text" id ="timeEnd" class="form-control datetimepicker-input" data-target="#timepicker3"/>
+                              </div>
+                              <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                          </div>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label>Dayoff:</label>
+                          <div class="input-group date" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="License No." id="dayoff" disabled>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </form>
+                  </div>
+                <!-- col -->
+              </div>
+              <div class="col-md-6">
+
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">Vehicle Info</h3>
+                  </div>
+                  <form role="form">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1 ">Car Plate No.</label>
+                          <select disabled class="form-control select2bs4" style="width: 100%;" id ="plateID" onchange ="showVehicleDetails()" required>
+
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1 ">Vehicle Type</label>
+                          <input class="form-control" placeholder="Vehicle Type"  id ="vehicleType" disabled>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1 ">Vehicle Model</label>
+                          <input class="form-control" placeholder="Vehicle Model" id ="vehicleModel" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label >No. of Pax</label>
+                          <input class="form-control" placeholder="No. of Pax" id ="paxNo" disabled>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-12">
+                          <label>Vehicle Image</label>
+                          <div style ="height: 300px; width: 100%;">
+                            <img id ='vehicleImg' src='' style = "max-width: 100%; max-height: 100%;">
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              <!-- 2nd col -->
+              </div>
+            <!--row -->
+            </div>
+          </div>
+        </section>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.2

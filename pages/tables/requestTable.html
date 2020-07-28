@@ -11,8 +11,19 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -223,9 +234,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../forms/overtimeForm.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime Request</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../forms/carForm.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Car Info</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../forms/carLogsForm.html" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs Form</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -265,9 +288,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../tables/carLogTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Car Logs List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../tables/shiftsTable.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Shifts List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../tables/overtimeTable.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Overtime List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -588,10 +623,178 @@
         <!-- /.col -->
         </div>
       <!-- /.row -->
-      </section>
+      </div>
+    </section>
     <!-- /.content -->
-    </div>
+  </div>
   <!-- /.content-wrapper -->
+  <div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Car Log Information</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <section class="content">
+            <div class="container-fluid" id = "submitRequest">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                  <!-- general form elements -->
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Request Info</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form">
+                      <div class="card-body ">
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1 ">Request No.</label>
+                          <input  class="form-control" id="requestID" placeholder="ID" disabled>
+                        </div>
+                        <div class="form-group col-md-12">
+                          <label for="exampleInputPassword1">Requestee Name</label>
+                          <input  class="form-control" id="requesteename" placeholder="Name" disabled>
+                          <input  class="form-control" id="requesteeID" hidden>
+                        </div>
+                        <div class="form-group col-md-12">
+                          <label for="exampleInputEmail1 ">Department</label>
+                          <input  class="form-control" id="department" placeholder="Department" disabled>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label >No. of Pax</label>
+                          <input id="paxNo" class="form-control" placeholder="No. of Pax" required>
+                        </div>
+
+                        <div class ="row col-md-12">
+                          <div class="form-group col-md-6">
+                            <label>Date From:</label>
+                            <div class="input-group date" id="datepicker" data-target-input="nearest">
+                              <div class="input-group-prepend"data-target="#datepicker" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                              </div>
+                              <input id ="dateStart" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker" required>
+                            </div>
+                            <!-- /.input group -->
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Date To:</label>
+                            <div class="input-group date" id="datepicker1" data-target-input="nearest">
+                              <div class="input-group-prepend" data-target="#datepicker1" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                              </div>
+                              <input id ="dateEnd" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask data-target="#datepicker1" required>
+                            </div>
+                            <!-- /.input group -->
+                          </div>
+                        </div>
+
+
+
+                        <!-- Date and time range -->
+                        <div class ="row col-md-12">
+                          <div class="bootstrap-timepicker col-md-6">
+                            <div class="form-group">
+                              <label>Time From:</label>
+
+                              <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                <div class="input-group-prepend" data-target="#timepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><span class="far fa-clock"></span></div>
+                                </div>
+                                <input id ="timeStart" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="hh:mm" data-target="#timepicker" required>
+                              </div>
+                              <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                          </div>
+                          <div class="bootstrap-timepicker1 col-md-6">
+                            <div class="form-group">
+                              <label>Time To:</label>
+
+                              <div class="input-group date" id="timepicker1" data-target-input="nearest">
+                                <div class="input-group-prepend" data-target="#timepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><span class="far fa-clock"></span></div>
+                                </div>
+                                <input id ="timeEnd" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="HH:mm" data-target="#timepicker1" required>
+                              </div>
+                              <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                          </div>
+                        </div>
+
+                        <div class ="row col-md-12">
+                          <div class="form-group col-md-6">
+                            <label>Destination From:</label>
+                            <div class="input-group mb-3" style="width: 100%;">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <span class="fas fa-map-marker-alt"></span>
+                                </div>
+                              </div>
+                              <input type = "text" class="form-control" id="googleSearchFrom" placeholder="Search place here" required>
+                            </div>
+                            <input class="form-control" id="fromLat" placeholder="Latitude" disabled>
+                            <input class="form-control" id="fromLng" placeholder="Longitude" disabled>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Destination To:</label>
+                                <div class="input-group mb-3" style="width: 100%;">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">
+                                    <span class="fas fa-map-marker-alt"></span>
+                                  </div>
+                                </div>
+                                <input type = "text" class="form-control" id="googleSearchTo" placeholder="Search place here" required>
+                              </div>
+                              <input class="form-control" id="toLat" placeholder="Latitude" disabled>
+                              <input class="form-control" id="toLng" placeholder="Longitude" disabled onchange ="calculateRoute()">
+                            </div>
+                          </div>
+                        </div>
+                        <div class ="row col-md-12" >
+                          <div id ="map" style ="height: 400px; width: 100%;">
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label>Purpose/Details</label>
+                            <textarea id = "purpose" class="form-control" rows="3" placeholder="Purpose/Details"></textarea>
+                          </div>
+                        </div>
+                    </div>
+
+                  </form>
+
+                  <!-- /.card -->
+                </div>
+                <!-- col -->
+              </div>
+              <div class="col-md-2">
+              </div>
+
+            <!--row -->
+            </div>
+          </div>
+          </section>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.2
@@ -639,23 +842,111 @@
 </script>
 
 <script src = "js/requestTable.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaiHgdLEqYHMWBX3uaSZzJ_HmSJCm6zLA"></script>
+
 <script src = "../../auth1.js"></script>
 <script src = "../../logout1.js"></script>
 <script src ="js/sortAsc.js"></script>
 <script src ="js/search.js"></script>
 
-<!-- jQuery -->
+<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/moment/moment.min.js"></script>
+<script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'HH:mm '
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#datepicker,#datepicker1,#datepicker2,#datepicker3').datetimepicker({
+      format: 'MM/DD/YYYY'
+    })
+
+    $('#timepicker,#timepicker1,#timepicker2,#timepicker3').datetimepicker({
+      format: 'HH:mm'
+    })
+
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
+</script>
 </body>
 </html>

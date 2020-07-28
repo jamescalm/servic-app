@@ -1,6 +1,5 @@
 var uploader = document.getElementById('uploader');
 var fileButton = document.getElementById('fileButton');
-var uploadBtn = document.getElementById('uploadBtn');
 var vehicleImg;
 var file;
 
@@ -61,7 +60,7 @@ carForm.addEventListener('submit', (e) =>{
       var ss = ('0'+ sec).slice(-2);
       var filename = MM + dd + yyyy + HH + mm + ss + file.name;
       console.log(filename);
-      var storeRef = storage.ref('vehicle_image/'+filename);
+      var storeRef = storage.ref('vehicle_image/' + filename);
 
       //upload file
       var task = storeRef.put(file);

@@ -1,7 +1,7 @@
-//register
-const signupForm = document.querySelector("#signup-form");
+// register
+var register = document.getElementById("register");
 
-signupForm.addEventListener('submit', (e) =>{
+register.addEventListener('click', (e) =>{
   e.preventDefault();
 
   var email = document.getElementById('signup-email').value;
@@ -24,6 +24,7 @@ signupForm.addEventListener('submit', (e) =>{
      db.collection('users').doc(user).set({
        id: user,
        name: fname,
+       profileImg: 'https://firebasestorage.googleapis.com/v0/b/finalapp-c0ad4.appspot.com/o/profileImages%2FemptyProfile.png?alt=media&token=c694c17f-9bfa-497d-a864-4b1e1cbfabdf',
        department: dept,
        email: email,
        phone: phone,
@@ -55,7 +56,6 @@ signupForm.addEventListener('submit', (e) =>{
 
 })
 
-
 function licenseHide() {
   var userTag = document.getElementById('user-tag').value;
 
@@ -72,6 +72,7 @@ function licenseHide() {
   }else{
     document.getElementById('license-no').disabled = true;
     document.getElementById('driverType').disabled = true;
+    document.getElementById('driverType').innerHTML = "";
     document.getElementById('driverType').value = '';
   }
 }
